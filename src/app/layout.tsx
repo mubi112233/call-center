@@ -179,7 +179,7 @@ export default async function RootLayout({
         </DesignSystemProvider>
         {/* Lazy load Google Analytics after page becomes interactive */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-LNDGNQ7Z74"
+          src="https://www.googletagmanager.com/gtag/js?id=G-Q75404R5F8"
           strategy="lazyOnload"
         />
         <Script id="google-analytics" strategy="lazyOnload">
@@ -187,7 +187,7 @@ export default async function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-LNDGNQ7Z74');
+            gtag('config', 'G-Q75404R5F8');
           `}
         </Script>
       </body>
