@@ -46,7 +46,6 @@ const nextConfig = {
   async redirects() {
     return [];
   },
-  // Add ISR configuration for better content freshness
   async rewrites() {
     return [
       {

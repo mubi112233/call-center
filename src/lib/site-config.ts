@@ -16,12 +16,16 @@ export interface SiteConfig {
   };
 }
 
+const rawTenantId = process.env.NEXT_PUBLIC_TENANT_ID || process.env.VITE_DATABASE || "socialmediaaccountmanagement";
+// Temporary override to force new tenant until .env.local is updated
+const resolvedTenantId = rawTenantId === 'socal_media_agency' ? 'socialmediaAccountmangement' : rawTenantId;
+
 export const siteConfig: SiteConfig = {
-  brandName: "SEO Pro",
-  brandMarkText: "S",
+  brandName: "Call Center",
+  brandMarkText: "CC",
   defaultLocale: "en",
   apiBase: process.env.NEXT_PUBLIC_API_BASE || "https://api.don-va.com",
-  tenantId: process.env.NEXT_PUBLIC_TENANT_ID || "socal_media_agency",
+  tenantId: resolvedTenantId,
   routes: {
     bookMeeting: "/book-meeting",
     contact: "/contact",

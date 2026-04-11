@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useForm, useWatch, type SubmitHandler } from "react-hook-form";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -17,16 +18,11 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { Navbar } from "@/components/Navbar";
 import {
-  Mail,
   Send,
-  CheckCircle2,
-  Users,
-  Briefcase,
-  MessageSquare,
   Loader2,
-  Star,
-  Clock,
+  CheckCircle2,
   Shield,
+  Clock,
 } from "lucide-react";
 
 type FormValues = {
@@ -48,23 +44,23 @@ type FormValues = {
 const translations: Record<string, Record<string, string>> = {
   en: {
     badge: "Get In Touch",
-    title: "Let's Find Your Perfect VA",
-    subtitle: "Tell us about your needs and we'll match you with the right virtual assistant within 48 hours.",
+    title: "Contact Our Call Center Team",
+    subtitle: "Tell us what you need and we’ll recommend the right inbound/outbound support setup within 48 hours.",
     email: "Email Address",
     phone: "Phone Number",
     mainServiceLabel: "Main Service Needed",
     mainServicePlaceholder: "Select a service",
     mainServiceOtherLabel: "Describe the service",
     mainServiceOtherPlaceholder: "Describe what you need...",
-    vaCountLabel: "How many VAs do you need?",
+    vaCountLabel: "How many agents do you need?",
     vaCountPlaceholder: "e.g. 2",
-    va1Label: "VA #1 — Background & Tasks",
-    va2IndustryLabel: "VA #2 — Industry",
-    va2Label: "VA #2 — Background & Tasks",
-    va3IndustryLabel: "VA #3 — Industry",
-    va3Label: "VA #3 — Background & Tasks",
-    va4IndustryLabel: "VA #4 — Industry",
-    va4Label: "VA #4 — Background & Tasks",
+    va1Label: "Agent #1 — Skills & Tasks",
+    va2IndustryLabel: "Agent #2 — Industry",
+    va2Label: "Agent #2 — Skills & Tasks",
+    va3IndustryLabel: "Agent #3 — Industry",
+    va3Label: "Agent #3 — Skills & Tasks",
+    va4IndustryLabel: "Agent #4 — Industry",
+    va4Label: "Agent #4 — Skills & Tasks",
     otherTasksLabel: "Additional Notes",
     otherTasksPlaceholder: "Anything else you'd like us to know...",
     submit: "Send Message",
@@ -74,7 +70,7 @@ const translations: Record<string, Record<string, string>> = {
     phoneRequired: "Phone is required",
     phoneInvalid: "Enter a valid phone number",
     mainServiceRequired: "Please select a service",
-    vaCountRequired: "Please enter the number of VAs",
+    vaCountRequired: "Please enter the number of agents",
     sideTitle: "Why Work With Us?",
     stat1Value: "200+",
     stat1Label: "Happy Clients",
@@ -82,31 +78,31 @@ const translations: Record<string, Record<string, string>> = {
     stat2Label: "Onboarding Time",
     stat3Value: "4.9/5",
     stat3Label: "Average Rating",
-    feature1: "Pre-vetted, German-speaking VAs",
-    feature2: "Save up to 70% vs local hires",
-    feature3: "14-day money-back guarantee",
+    feature1: "Pre-trained call center agents",
+    feature2: "Inbound + outbound coverage",
+    feature3: "Scripts, QA & reporting included",
     feature4: "Dedicated account manager",
     responseTime: "We typically respond within 2 hours",
   },
   ge: {
     badge: "Kontakt aufnehmen",
-    title: "Finden Sie Ihren perfekten VA",
-    subtitle: "Erzählen Sie uns von Ihren Bedürfnissen und wir finden den richtigen VA innerhalb von 48 Stunden.",
+    title: "Kontaktieren Sie unser Call Center Team",
+    subtitle: "Sagen Sie uns, was Sie benötigen, und wir empfehlen innerhalb von 48 Stunden die passende Inbound/Outbound-Lösung.",
     email: "E-Mail-Adresse",
     phone: "Telefonnummer",
     mainServiceLabel: "Hauptdienstleistung",
     mainServicePlaceholder: "Dienst auswählen",
     mainServiceOtherLabel: "Dienst beschreiben",
     mainServiceOtherPlaceholder: "Beschreiben Sie Ihre Anforderungen...",
-    vaCountLabel: "Wie viele VAs benötigen Sie?",
+    vaCountLabel: "Wie viele Agents benötigen Sie?",
     vaCountPlaceholder: "z.B. 2",
-    va1Label: "VA #1 — Hintergrund & Aufgaben",
-    va2IndustryLabel: "VA #2 — Branche",
-    va2Label: "VA #2 — Hintergrund & Aufgaben",
-    va3IndustryLabel: "VA #3 — Branche",
-    va3Label: "VA #3 — Hintergrund & Aufgaben",
-    va4IndustryLabel: "VA #4 — Branche",
-    va4Label: "VA #4 — Hintergrund & Aufgaben",
+    va1Label: "Agent #1 — Skills & Aufgaben",
+    va2IndustryLabel: "Agent #2 — Branche",
+    va2Label: "Agent #2 — Skills & Aufgaben",
+    va3IndustryLabel: "Agent #3 — Branche",
+    va3Label: "Agent #3 — Skills & Aufgaben",
+    va4IndustryLabel: "Agent #4 — Branche",
+    va4Label: "Agent #4 — Skills & Aufgaben",
     otherTasksLabel: "Weitere Anmerkungen",
     otherTasksPlaceholder: "Was sollen wir noch wissen...",
     submit: "Nachricht senden",
@@ -116,7 +112,7 @@ const translations: Record<string, Record<string, string>> = {
     phoneRequired: "Telefon ist erforderlich",
     phoneInvalid: "Gültige Telefonnummer eingeben",
     mainServiceRequired: "Bitte wählen Sie einen Dienst",
-    vaCountRequired: "Bitte geben Sie die Anzahl der VAs ein",
+    vaCountRequired: "Bitte geben Sie die Anzahl der Agents ein",
     sideTitle: "Warum mit uns arbeiten?",
     stat1Value: "200+",
     stat1Label: "Zufriedene Kunden",
@@ -124,9 +120,9 @@ const translations: Record<string, Record<string, string>> = {
     stat2Label: "Onboarding-Zeit",
     stat3Value: "4.9/5",
     stat3Label: "Durchschnittsbewertung",
-    feature1: "Geprüfte, deutschsprachige VAs",
-    feature2: "Bis zu 70% günstiger als lokale Einstellungen",
-    feature3: "14-Tage-Geld-zurück-Garantie",
+    feature1: "Geschulte Call Center Agents",
+    feature2: "Inbound- und Outbound-Support",
+    feature3: "Skripte, QA & Reporting inklusive",
     feature4: "Persönlicher Account Manager",
     responseTime: "Wir antworten in der Regel innerhalb von 2 Stunden",
   },
@@ -138,20 +134,6 @@ const industryOptions = [
   { value: "saas", label: "SaaS / Tech" },
   { value: "other", label: "Other" },
 ];
-
-function FormSection({ icon: Icon, title, children }: { icon: React.ElementType; title: string; children: React.ReactNode }) {
-  return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-2 pb-2 border-b border-border/50">
-        <div className="w-7 h-7 rounded-lg bg-gold/10 flex items-center justify-center flex-shrink-0">
-          <Icon className="w-4 h-4 text-gold" />
-        </div>
-        <span className="text-sm font-semibold text-foreground">{title}</span>
-      </div>
-      {children}
-    </div>
-  );
-}
 
 function FieldError({ message }: { message?: string }) {
   return message ? <p className="text-xs font-medium text-destructive mt-1">{message}</p> : null;
@@ -188,7 +170,7 @@ export default function ContactClient({ lang }: { lang: string }) {
     const formData = new FormData();
     formData.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "8aff1902-6795-4608-ad79-be6702aa7f3a");
     formData.append("to", "patryk@dononlineagency.com");
-    formData.append("subject", "New contact request - Don Va");
+    formData.append("subject", "New contact request - Call Center");
     formData.append("email", data.email);
     formData.append("phone", data.phone);
     formData.append("vaCount", data.vaCount);
@@ -219,127 +201,41 @@ export default function ContactClient({ lang }: { lang: string }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/10 to-background relative overflow-hidden">
-      {/* Background blobs */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gold/4 rounded-full blur-[140px] pointer-events-none" />
-
+    <div className="min-h-screen bg-gradient-to-b from-background via-muted/10 to-background relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[520px] h-[520px] bg-gold/5 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[520px] h-[520px] bg-primary/5 rounded-full blur-[160px] pointer-events-none" />
       <Navbar />
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 pt-28 pb-20">
-        {/* Page Header */}
-        <motion.div
-          className="text-left mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="inline-block px-4 py-1.5 bg-gold/10 text-gold text-xs font-semibold rounded-full mb-4 tracking-wide uppercase">
-            {c.badge}
-          </span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-            {c.title}
-          </h1>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            {c.subtitle}
-          </p>
-        </motion.div>
-
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
-
-          {/* Left — Info Panel */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-6 lg:px-10 xl:px-12 pt-28 pb-16">
+        <div className="max-w-5xl mx-auto">
           <motion.div
-            className="lg:col-span-2 lg:sticky lg:top-28 space-y-6"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
           >
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                { value: c.stat1Value, label: c.stat1Label, icon: Users },
-                { value: c.stat2Value, label: c.stat2Label, icon: Clock },
-                { value: c.stat3Value, label: c.stat3Label, icon: Star },
-              ].map(({ value, label, icon: Icon }) => (
-                <div key={label} className="text-center p-4 bg-card border border-border/50 rounded-xl hover:border-gold/40 transition-colors">
-                  <Icon className="w-4 h-4 text-gold mx-auto mb-1.5" />
-                  <div className="text-xl font-bold text-gold">{value}</div>
-                  <div className="text-xs text-muted-foreground mt-0.5">{label}</div>
+            <Card className="border border-gold/20 bg-card/70 shadow-2xl shadow-black/10 backdrop-blur-xl rounded-2xl">
+              <CardHeader className="space-y-3 pb-6">
+                <div className="inline-flex items-center gap-2 w-fit rounded-full border border-gold/25 bg-gold/10 px-3 py-1 text-xs font-semibold text-gold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+                  {c.badge}
                 </div>
-              ))}
-            </div>
-
-            {/* Features */}
-            <div className="p-6 bg-card border border-border/50 rounded-xl space-y-4">
-              <h3 className="font-bold text-foreground text-base">{c.sideTitle}</h3>
-              <ul className="space-y-3">
-                {[c.feature1, c.feature2, c.feature3, c.feature4].map((f) => (
-                  <li key={f} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-muted-foreground">{f}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Response time */}
-            <div className="flex items-center gap-3 p-4 bg-gold/5 border border-gold/20 rounded-xl">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0" />
-              <p className="text-sm text-muted-foreground">{c.responseTime}</p>
-            </div>
-
-            {/* Testimonial */}
-            <div className="p-5 bg-card border border-border/50 rounded-xl space-y-3">
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 text-gold fill-gold" />)}
-              </div>
-              <p className="text-sm text-muted-foreground italic leading-relaxed">
-                &ldquo;Don Va transformed our operations. We saved over €40k in the first year alone.&rdquo;
-              </p>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gold/30 to-gold/10 flex items-center justify-center">
-                  <span className="text-gold font-bold text-xs">SJ</span>
-                </div>
-                <div>
-                  <div className="text-xs font-semibold text-foreground">Sarah Johnson</div>
-                  <div className="text-xs text-muted-foreground">CEO, TechStart Inc</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Security note */}
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <Shield className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-              <span>Your information is 100% secure and never shared.</span>
-            </div>
-          </motion.div>
-
-          {/* Right — Form */}
-          <motion.div
-            className="lg:col-span-3"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="bg-card border border-border/50 rounded-2xl shadow-xl shadow-black/10 overflow-hidden">
-              {/* Form header bar */}
-              <div className="px-6 sm:px-8 py-5 border-b border-border/50 bg-gradient-to-r from-gold/5 to-transparent">
-                <h2 className="font-bold text-foreground text-lg">Fill in your details</h2>
-                <p className="text-sm text-muted-foreground mt-0.5">All fields marked are required</p>
-              </div>
-
-              <form className="px-6 sm:px-8 py-7 space-y-8" onSubmit={handleSubmit(onSubmit)}>
-
-                {/* Contact Info */}
-                <FormSection icon={Mail} title="Contact Information">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <Label htmlFor="email" className="text-sm">{c.email} <span className="text-gold">*</span></Label>
+                <CardTitle className="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
+                  {c.title}
+                </CardTitle>
+                <CardDescription className="text-base sm:text-lg leading-relaxed text-muted-foreground">
+                  {c.subtitle}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
+                  <form className="space-y-7 lg:col-span-3" onSubmit={handleSubmit(onSubmit)}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="email">{c.email}</Label>
                       <Input
                         id="email"
                         type="email"
                         placeholder="you@company.com"
-                        className="border-border/60 focus:border-gold/60 transition-colors"
+                        className="h-11"
                         {...register("email", {
                           required: c.emailRequired,
                           pattern: { value: emailPattern, message: c.emailInvalid },
@@ -347,13 +243,13 @@ export default function ContactClient({ lang }: { lang: string }) {
                       />
                       <FieldError message={errors.email?.message} />
                     </div>
-                    <div className="space-y-1.5">
-                      <Label htmlFor="phone" className="text-sm">{c.phone} <span className="text-gold">*</span></Label>
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">{c.phone}</Label>
                       <Input
                         id="phone"
                         type="tel"
                         placeholder="+1 555 123 4567"
-                        className="border-border/60 focus:border-gold/60 transition-colors"
+                        className="h-11"
                         {...register("phone", {
                           required: c.phoneRequired,
                           pattern: { value: phonePattern, message: c.phoneInvalid },
@@ -362,154 +258,231 @@ export default function ContactClient({ lang }: { lang: string }) {
                       <FieldError message={errors.phone?.message} />
                     </div>
                   </div>
-                </FormSection>
 
-                {/* Service */}
-                <FormSection icon={Briefcase} title="Service Requirements">
-                  <div className="space-y-1.5">
-                    <Label className="text-sm">{c.mainServiceLabel} <span className="text-gold">*</span></Label>
+                  <div className="space-y-2">
+                    <Label>{c.mainServiceLabel}</Label>
                     <Select onValueChange={(v) => setValue("mainService", v, { shouldValidate: true })}>
-                      <SelectTrigger className="border-border/60 focus:border-gold/60">
+                      <SelectTrigger className="h-11">
                         <SelectValue placeholder={c.mainServicePlaceholder} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="social-media">Social Media Management</SelectItem>
-                        <SelectItem value="customer-support">Customer Support</SelectItem>
-                        <SelectItem value="back-office">Back-Office & Admin</SelectItem>
-                        <SelectItem value="seo-content">SEO & Content</SelectItem>
+                        <SelectItem value="inbound-calls">Inbound Call Support</SelectItem>
+                        <SelectItem value="outbound-calls">Outbound Sales Calls</SelectItem>
+                        <SelectItem value="customer-service">Customer Service</SelectItem>
+                        <SelectItem value="technical-support">Technical Support</SelectItem>
                         <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
                     <input type="hidden" {...register("mainService", { required: c.mainServiceRequired })} />
                     <FieldError message={errors.mainService?.message} />
-                    <AnimatePresence>
-                      {mainServiceValue === "other" && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="space-y-1.5 mt-3"
-                        >
-                          <Label htmlFor="mainServiceOther" className="text-sm">{c.mainServiceOtherLabel}</Label>
-                          <Textarea
-                            id="mainServiceOther"
-                            rows={3}
-                            placeholder={c.mainServiceOtherPlaceholder}
-                            className="border-border/60 focus:border-gold/60 resize-none"
-                            {...register("mainServiceOther")}
-                          />
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    {mainServiceValue === "other" && (
+                      <div className="space-y-2 mt-3">
+                        <Label htmlFor="mainServiceOther">{c.mainServiceOtherLabel}</Label>
+                        <Textarea
+                          id="mainServiceOther"
+                          rows={3}
+                          placeholder={c.mainServiceOtherPlaceholder}
+                          className="min-h-[96px]"
+                          {...register("mainServiceOther")}
+                        />
+                      </div>
+                    )}
                   </div>
-                </FormSection>
 
-                {/* VA Count */}
-                <FormSection icon={Users} title="Team Size">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="vaCount" className="text-sm">{c.vaCountLabel} <span className="text-gold">*</span></Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="vaCount">{c.vaCountLabel}</Label>
                     <Input
                       id="vaCount"
                       type="number"
                       min={1}
                       max={10}
                       placeholder={c.vaCountPlaceholder}
-                      className="border-border/60 focus:border-gold/60 max-w-[160px]"
+                      className="h-11"
                       {...register("vaCount", { required: c.vaCountRequired })}
                     />
                     <FieldError message={errors.vaCount?.message} />
                   </div>
 
-                  {/* Dynamic VA fields */}
-                  <AnimatePresence>
-                    {[1, 2, 3, 4].map((n) =>
-                      Number(vaCountValue) >= n ? (
-                        <motion.div
-                          key={n}
-                          initial={{ opacity: 0, y: -8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -8 }}
-                          transition={{ duration: 0.3 }}
-                          className="p-4 bg-muted/30 border border-border/40 rounded-xl space-y-3"
-                        >
-                          <div className="flex items-center gap-2">
-                            <span className="w-6 h-6 rounded-full bg-gold text-black text-xs font-bold flex items-center justify-center">{n}</span>
-                            <span className="text-sm font-semibold text-foreground">Virtual Assistant #{n}</span>
-                          </div>
-                          {n >= 2 && (
-                            <div className="space-y-1.5">
-                              <Label className="text-xs text-muted-foreground">{c[`va${n}IndustryLabel`]}</Label>
-                              <Select onValueChange={(v) => setValue(`va${n}Industry` as any, v)}>
-                                <SelectTrigger className="border-border/60 h-9 text-sm">
-                                  <SelectValue placeholder={c[`va${n}IndustryLabel`]} />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  {industryOptions.map((o) => (
-                                    <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
-                            </div>
-                          )}
-                          <div className="space-y-1.5">
-                            <Label className="text-xs text-muted-foreground">{c[`va${n === 1 ? 1 : n}Label`]}</Label>
-                            <Textarea
-                              rows={2}
-                              placeholder={
-                                n === 1 ? "Example: Customer support for Shopify store, fluent German, email + chat." :
-                                n === 2 ? "Example: Back-office admin: email inbox, calendar coordination, invoicing." :
-                                n === 3 ? "Example: SEO & content: blog writing, keyword research, on-page optimization." :
-                                "Example: Social media: content scheduling, engagement, reports."
-                              }
-                              className="border-border/60 focus:border-gold/60 resize-none text-sm"
-                              {...register(`va${n === 1 ? "1" : n}Background` as any)}
-                            />
-                          </div>
-                        </motion.div>
-                      ) : null
-                    )}
-                  </AnimatePresence>
-                </FormSection>
+                  {Number(vaCountValue) >= 1 && (
+                    <div className="space-y-2">
+                      <Label htmlFor="va1Background">{c.va1Label}</Label>
+                      <Textarea
+                        id="va1Background"
+                        rows={3}
+                        placeholder="Example: Inbound calls + chat, fluent English/German, CRM experience, ticketing tools."
+                        className="min-h-[96px]"
+                        {...register("va1Background")}
+                      />
+                    </div>
+                  )}
 
-                {/* Additional Notes */}
-                <FormSection icon={MessageSquare} title="Additional Notes">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="otherTasks" className="text-sm">{c.otherTasksLabel}</Label>
+                  {Number(vaCountValue) >= 2 && (
+                    <div className="space-y-2">
+                      <Label>{c.va2IndustryLabel}</Label>
+                      <Select onValueChange={(v) => setValue("va2Industry", v, { shouldValidate: false })}>
+                        <SelectTrigger className="h-11">
+                          <SelectValue placeholder={c.va2IndustryLabel} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {industryOptions.map((o) => (
+                            <SelectItem key={o.value} value={o.value}>
+                              {o.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+
+                      <Label htmlFor="va2Background">{c.va2Label}</Label>
+                      <Textarea
+                        id="va2Background"
+                        rows={3}
+                        placeholder="Example: Outbound calls: lead generation, appointment setting, follow-ups, sales scripts."
+                        className="min-h-[96px]"
+                        {...register("va2Background")}
+                      />
+                    </div>
+                  )}
+
+                  {Number(vaCountValue) >= 3 && (
+                    <div className="space-y-2">
+                      <Label>{c.va3IndustryLabel}</Label>
+                      <Select onValueChange={(v) => setValue("va3Industry", v, { shouldValidate: false })}>
+                        <SelectTrigger className="h-11">
+                          <SelectValue placeholder={c.va3IndustryLabel} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {industryOptions.map((o) => (
+                            <SelectItem key={o.value} value={o.value}>
+                              {o.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+
+                      <Label htmlFor="va3Background">{c.va3Label}</Label>
+                      <Textarea
+                        id="va3Background"
+                        rows={3}
+                        placeholder="Example: Customer service: refunds, returns, order issues, escalation handling."
+                        className="min-h-[96px]"
+                        {...register("va3Background")}
+                      />
+                    </div>
+                  )}
+
+                  {Number(vaCountValue) >= 4 && (
+                    <div className="space-y-2">
+                      <Label>{c.va4IndustryLabel}</Label>
+                      <Select onValueChange={(v) => setValue("va4Industry", v, { shouldValidate: false })}>
+                        <SelectTrigger className="h-11">
+                          <SelectValue placeholder={c.va4IndustryLabel} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {industryOptions.map((o) => (
+                            <SelectItem key={o.value} value={o.value}>
+                              {o.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+
+                      <Label htmlFor="va4Background">{c.va4Label}</Label>
+                      <Textarea
+                        id="va4Background"
+                        rows={3}
+                        placeholder="Example: QA/training: call monitoring, scorecards, coaching, reporting."
+                        className="min-h-[96px]"
+                        {...register("va4Background")}
+                      />
+                    </div>
+                  )}
+
+                  <div className="space-y-2">
+                    <Label htmlFor="otherTasks">{c.otherTasksLabel}</Label>
                     <Textarea
                       id="otherTasks"
-                      rows={4}
+                      rows={3}
                       placeholder={c.otherTasksPlaceholder}
-                      className="border-border/60 focus:border-gold/60 resize-none"
+                      className="min-h-[96px]"
                       {...register("otherTasks")}
                     />
                   </div>
-                </FormSection>
 
-                {/* Submit */}
-                <div className="pt-2">
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full sm:w-auto px-10 py-3 bg-gold hover:bg-yellow-500 text-black font-bold rounded-xl shadow-lg shadow-gold/25 hover:shadow-gold/40 hover:scale-[1.02] active:scale-[0.99] transition-all duration-200 text-base"
-                  >
-                    {isSubmitting ? (
-                      <span className="flex items-center gap-2">
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        {c.submitSending}
-                      </span>
-                    ) : (
-                      <span className="flex items-center gap-2">
-                        <Send className="w-4 h-4" />
-                        {c.submit}
-                      </span>
-                    )}
-                  </Button>
+                  <div className="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3">
+                    <div className="text-xs text-muted-foreground flex items-center gap-2 sm:mr-auto">
+                      <Clock className="w-4 h-4 text-gold" />
+                      {c.responseTime}
+                    </div>
+                    <Button
+                      type="submit"
+                      className="px-8 h-11 shadow-lg shadow-gold/20 hover:shadow-gold/40 hover:scale-[1.02] active:scale-[0.99] transition-transform duration-200"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <span className="flex items-center gap-2">
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          {c.submitSending}
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-2">
+                          <Send className="w-4 h-4" />
+                          {c.submit}
+                        </span>
+                      )}
+                    </Button>
+                  </div>
+                  </form>
+
+                  <div className="lg:col-span-2">
+                    <div className="lg:sticky lg:top-28 space-y-5">
+                      <div className="rounded-2xl border border-border/60 bg-background/40 p-5">
+                        <div className="flex items-center justify-between gap-4">
+                          <div>
+                            <div className="text-sm font-bold text-foreground">{c.sideTitle}</div>
+                            <div className="text-xs text-muted-foreground mt-1">{c.badge}</div>
+                          </div>
+                          <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center">
+                            <Shield className="w-5 h-5 text-gold" />
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-3 mt-5">
+                          <div className="rounded-xl border border-border/60 bg-background/50 p-3 text-center">
+                            <div className="text-lg font-black text-gold">{c.stat1Value}</div>
+                            <div className="text-[11px] text-muted-foreground mt-1 leading-tight">{c.stat1Label}</div>
+                          </div>
+                          <div className="rounded-xl border border-border/60 bg-background/50 p-3 text-center">
+                            <div className="text-lg font-black text-gold">{c.stat2Value}</div>
+                            <div className="text-[11px] text-muted-foreground mt-1 leading-tight">{c.stat2Label}</div>
+                          </div>
+                          <div className="rounded-xl border border-border/60 bg-background/50 p-3 text-center">
+                            <div className="text-lg font-black text-gold">{c.stat3Value}</div>
+                            <div className="text-[11px] text-muted-foreground mt-1 leading-tight">{c.stat3Label}</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="rounded-2xl border border-border/60 bg-background/40 p-5">
+                        <div className="text-sm font-bold text-foreground">{lang === "ge" ? "Leistungen" : "What you get"}</div>
+                        <div className="mt-4 space-y-3">
+                          {[c.feature1, c.feature2, c.feature3, c.feature4].map((f) => (
+                            <div key={f} className="flex items-start gap-3">
+                              <div className="mt-0.5 w-6 h-6 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0">
+                                <CheckCircle2 className="w-4 h-4 text-gold" />
+                              </div>
+                              <div className="text-sm text-muted-foreground leading-relaxed">{f}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </form>
-            </div>
+              </CardContent>
+            </Card>
           </motion.div>
         </div>
       </div>
     </div>
   );
-}
+ }

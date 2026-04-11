@@ -7,6 +7,7 @@ import { getCopy } from "@/lib/copy";
 import { SPACING } from "@/lib/constants";
 import type { Metadata } from "next";
 import { absoluteUrl, hreflangAlternates, publicLocalePathSegment } from "@/lib/site-url";
+import { generateCaseStudySchema, generateBreadcrumbSchema } from "@/lib/structured-data";
 
 interface CaseStudyData {
   caseStudyId: number;
@@ -45,7 +46,7 @@ export async function generateMetadata({
 
   if (!caseStudy) return {};
 
-  const title = `${caseStudy.company} - ${caseStudy.title} | DON VA`;
+  const title = `${caseStudy.company} - ${caseStudy.title} | Call Center`;
   const description = caseStudy.challenge.substring(0, 160);
   const pathAfterLocale = `case-study/${slug}`;
   const canonical = absoluteUrl(`/${urlSeg}/${pathAfterLocale}`);
@@ -96,8 +97,25 @@ export default async function CaseStudyPage({
     notFound();
   }
 
+  const caseStudySchema = generateCaseStudySchema({
+    title: caseStudy.title,
+    description: caseStudy.challenge.substring(0, 160),
+    company: caseStudy.company,
+    industry: caseStudy.industry,
+    url: absoluteUrl(`/${currentLang}/case-study/${slug}`),
+    image: caseStudy.image,
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { label: currentLang === "ge" ? "Startseite" : "Home", href: `/${currentLang}` },
+    { label: currentLang === "ge" ? "Fallstudien" : "Case Studies", href: `/${currentLang}/#case-studies` },
+    { label: caseStudy.company, href: `/${currentLang}/case-study/${slug}` },
+  ]);
+
   return (
     <div className={`min-h-screen ${SPACING.sideMargin} bg-background`}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <article className="max-w-5xl mx-auto py-6 sm:py-8 md:py-12 px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <nav className="mb-4 sm:mb-6 text-xs sm:text-sm text-muted-foreground overflow-x-auto whitespace-nowrap">

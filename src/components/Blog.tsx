@@ -186,19 +186,19 @@ export const Blog = () => {
                     </div>
                   </div>
 
-                  <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-gold transition-colors line-clamp-2 flex-grow">
+                  <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-gold transition-colors line-clamp-2">
                     {post.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6 line-clamp-2 sm:line-clamp-3">
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3">
                     {post.excerpt}
                   </p>
 
-                  <div className="flex items-center justify-between pt-4 sm:pt-6 border-t border-border/50 mt-auto">
-                    <span className="text-xs sm:text-sm text-muted-foreground truncate">
-                      {copy.by} {post.author}
-                    </span>
-                    <div className="flex items-center gap-1 sm:gap-2 text-gold font-semibold text-xs sm:text-sm group-hover:gap-2 sm:group-hover:gap-3 transition-all flex-shrink-0">
+                  <div className="flex items-center justify-between">
+                    <div className="flex gap-3 text-xs text-muted-foreground">
+                      <span className="text-gold font-semibold">{post.readTime}</span>
+                    </div>
+                    <div className="flex items-center gap-1 sm:gap-2 text-gold font-semibold text-xs sm:text-sm group-hover:gap-2 sm:group-hover:gap-3 transition-all">
                       <span className="hidden sm:inline">{copy.readMore}</span>
                       <span className="sm:hidden">{copy.read}</span>
                       <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />

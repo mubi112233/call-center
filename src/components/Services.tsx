@@ -1,18 +1,62 @@
 "use client";
 
-import { Instagram, HeadphonesIcon, FolderKanban, TrendingUp, Loader2 } from "lucide-react";
+import {
+  Instagram,
+  HeadphonesIcon,
+  FolderKanban,
+  TrendingUp,
+  Loader2,
+  Phone,
+  MessageCircle,
+  Users,
+  Clock,
+  Calendar,
+  Mail,
+  FileText,
+  BarChart3,
+  CheckCircle,
+  Zap,
+  Shield,
+  Headset,
+  Mic,
+  MousePointerClick,
+  ArrowRightLeft,
+  Building2,
+  Briefcase,
+  Globe,
+  Award,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import * as LucideIcons from "lucide-react";
 import { fetchServices, Service } from "@/lib/api";
 import { SPACING } from "@/lib/constants";
 import { usePathname } from "next/navigation";
 
+// Icon mapping for call center services - extend as needed
 const iconMap: Record<string, any> = {
   Instagram,
   HeadphonesIcon,
   FolderKanban,
   TrendingUp,
+  Phone,
+  Headset,
+  Mic,
+  MessageCircle,
+  Users,
+  Clock,
+  Calendar,
+  Mail,
+  FileText,
+  BarChart3,
+  CheckCircle,
+  Zap,
+  Shield,
+  MousePointerClick,
+  ArrowRightLeft,
+  Building2,
+  Briefcase,
+  Globe,
+  Award,
 };
 
 const sectionCopy = {
@@ -131,7 +175,7 @@ export const Services = () => {
           variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
         >
           {services.map((service, index) => {
-            const IconComponent = iconMap[service.icon] || (LucideIcons as any)[service.icon] || Instagram;
+            const IconComponent = iconMap[service.icon] || HeadphonesIcon;
             return (
               <motion.div
                 key={service._id || service.order}

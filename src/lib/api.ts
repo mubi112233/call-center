@@ -10,9 +10,14 @@ const getApiBase = () =>
   process.env.NEXT_PUBLIC_API_BASE ||
   'https://api.don-va.com';
 
-const getTenantId = () =>
-  process.env.NEXT_PUBLIC_TENANT_ID ||
-  'socal_media_agency';
+const getTenantId = () => {
+  const tenant = process.env.NEXT_PUBLIC_TENANT_ID ||
+    process.env.VITE_DATABASE ||
+    'socialmediaaccountmanagement';
+  // Temporary override to force new tenant until .env.local is updated
+  const finalTenant = tenant === 'socal_media_agency' ? 'socialmediaAccountmangement' : tenant;
+  return finalTenant;
+};
 
 /**
  * Creates fetch options with proper headers including X-Tenant-ID

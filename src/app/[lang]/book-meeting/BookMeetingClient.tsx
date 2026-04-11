@@ -16,14 +16,17 @@ import {
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { localeUrlPrefix, normalizeLocale, siteConfig } from "@/lib/site-config";
 
 export default function BookMeetingClient() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const lang = pathname.startsWith("/ge") || pathname.startsWith("/de") ? "de" : "en";
-  const homePath = lang === "de" ? "/de" : "/en";
+  const siteLocale = normalizeLocale(pathname);
+  const urlSeg = localeUrlPrefix(siteLocale);
+  const lang = urlSeg;
+  const homePath = `/${urlSeg}`;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -65,15 +68,15 @@ export default function BookMeetingClient() {
                 whileHover={{ rotate: 5, scale: 1.1 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                <span className="text-black font-black text-xl sm:text-2xl">D</span>
+                <span className="text-black font-black text-xl sm:text-2xl">{siteConfig.brandMarkText}</span>
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </motion.div>
               <div className="flex flex-col">
                 <span className="text-xl sm:text-2xl font-black bg-gradient-to-r from-foreground via-foreground to-foreground/90 bg-clip-text text-transparent group-hover:from-gold group-hover:to-yellow-600 transition-all duration-300">
-                  Don Va
+                  {siteConfig.brandName}
                 </span>
                 <span className="text-[10px] sm:text-xs text-gold/80 font-semibold -mt-1 tracking-wide">
-                  Premium VAs
+                  {lang === "de" ? "Call Center Services" : "Call Center Services"}
                 </span>
               </div>
             </motion.div>
@@ -85,7 +88,7 @@ export default function BookMeetingClient() {
                   className="text-muted-foreground hover:text-gold hover:bg-gold/10 transition-all duration-300 font-semibold px-4 py-2 rounded-xl group"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
-                  Home
+                  {lang === "de" ? "Start" : "Home"}
                 </Button>
               </Link>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -100,7 +103,7 @@ export default function BookMeetingClient() {
                   className="bg-gradient-to-r from-gold to-yellow-600 hover:from-yellow-600 hover:to-gold text-black font-bold px-6 py-2 rounded-xl shadow-lg hover:shadow-xl hover:shadow-gold/30 transition-all duration-300 border-2 border-gold/50"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
-                  Book Now
+                  {lang === "de" ? "Jetzt buchen" : "Book Now"}
                 </Button>
               </motion.div>
             </div>
@@ -158,7 +161,7 @@ export default function BookMeetingClient() {
                       className="w-full bg-gradient-to-r from-gold to-yellow-600 hover:from-yellow-600 hover:to-gold text-black font-bold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                       <Calendar className="w-5 h-5 mr-2" />
-                      Book Your Meeting Now
+                      {lang === "de" ? "Termin jetzt buchen" : "Book Your Meeting Now"}
                     </Button>
                   </motion.div>
                   <div className="h-px bg-border/50 mx-4" />
@@ -173,7 +176,7 @@ export default function BookMeetingClient() {
                         className="w-full justify-start text-muted-foreground hover:text-gold hover:bg-gold/5 py-3 rounded-xl transition-all duration-300 group"
                       >
                         <ArrowLeft className="w-5 h-5 mr-3 group-hover:-translate-x-1 transition-transform duration-300" />
-                        <span className="font-semibold">Back to Home</span>
+                        <span className="font-semibold">{lang === "de" ? "Zurück" : "Back to Home"}</span>
                       </Button>
                     </Link>
                   </motion.div>
@@ -196,21 +199,35 @@ export default function BookMeetingClient() {
           >
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold mb-3 text-foreground">
-                Book Your Consultation
+                {lang === "de" ? "Kostenlose Beratung buchen" : "Book Your Consultation"}
               </h2>
               <p className="text-base text-muted-foreground leading-relaxed">
-                Schedule a free 15-minute call to discuss how we can help your business.
+                {lang === "de"
+                  ? "Buche ein kostenloses 15-minütiges Gespräch, um zu besprechen, wie wir dein Business unterstützen können."
+                  : "Schedule a free 15-minute call to discuss how we can help your business."}
               </p>
             </div>
 
             {/* Meeting Details */}
             <div className="space-y-4 p-5 sm:p-6 bg-card border border-border rounded-xl shadow-md">
-              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-4">What to Expect</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-4">{lang === "de" ? "Was dich erwartet" : "What to Expect"}</h3>
               <div className="space-y-4">
                 {[
-                  { icon: Clock, title: "15-Minute Session", desc: "Quick, focused discussion about your needs" },
-                  { icon: Video, title: "Virtual Meeting", desc: "Join via Google Meet or Zoom" },
-                  { icon: CheckCircle2, title: "No Commitment", desc: "Free consultation with no obligations" },
+                  {
+                    icon: Clock,
+                    title: lang === "de" ? "15 Minuten" : "15-Minute Session",
+                    desc: lang === "de" ? "Kurz und fokussiert: Wir klären deine Anforderungen" : "Quick, focused discussion about your needs",
+                  },
+                  {
+                    icon: Video,
+                    title: lang === "de" ? "Virtuelles Meeting" : "Virtual Meeting",
+                    desc: lang === "de" ? "Via Google Meet oder Zoom" : "Join via Google Meet or Zoom",
+                  },
+                  {
+                    icon: CheckCircle2,
+                    title: lang === "de" ? "Ohne Verpflichtung" : "No Commitment",
+                    desc: lang === "de" ? "Kostenloses Erstgespräch ohne Verpflichtungen" : "Free consultation with no obligations",
+                  },
                 ].map(({ icon: Icon, title, desc }) => (
                   <div key={title} className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center">
@@ -227,14 +244,14 @@ export default function BookMeetingClient() {
 
             {/* We'll Discuss */}
             <div className="space-y-4 p-5 sm:p-6 bg-gold/5 border border-gold/20 rounded-xl">
-              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-4">We&apos;ll Discuss</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-foreground mb-4">{lang === "de" ? "Wir besprechen" : "We'll Discuss"}</h3>
               <ul className="space-y-3">
                 {[
-                  "Your current operational challenges",
-                  "How VAs can fit into your workflow",
-                  "Custom solutions for your business",
-                  "Pricing & team structure options",
-                  "Next steps to get started",
+                  lang === "de" ? "Deine aktuellen operativen Herausforderungen" : "Your current operational challenges",
+                  lang === "de" ? "Wie wir Call-Center Teams in deine Abläufe integrieren" : "How call center teams can fit into your workflow",
+                  lang === "de" ? "Maßgeschneiderte Lösungen für dein Business" : "Custom solutions for your business",
+                  lang === "de" ? "Preise & Teamstruktur" : "Pricing & team structure options",
+                  lang === "de" ? "Nächste Schritte für den Start" : "Next steps to get started",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-5 h-5 rounded-full bg-gold/20 flex items-center justify-center mt-0.5">
@@ -249,9 +266,9 @@ export default function BookMeetingClient() {
             {/* Trust Indicators */}
             <div className="grid grid-cols-3 gap-4 pt-4">
               {[
-                { value: "200+", label: "Clients" },
-                { value: "70%", label: "Cost Saved" },
-                { value: "4.9/5", label: "Rating" },
+                { value: "200+", label: lang === "de" ? "Kunden" : "Clients" },
+                { value: "70%", label: lang === "de" ? "Kosten gespart" : "Cost Saved" },
+                { value: "4.9/5", label: lang === "de" ? "Bewertung" : "Rating" },
               ].map(({ value, label }) => (
                 <div key={label} className="text-center p-4 bg-card border border-border rounded-lg">
                   <div className="text-2xl font-bold text-gold">{value}</div>
@@ -270,6 +287,8 @@ export default function BookMeetingClient() {
                   className="rounded-lg"
                   style={{ minWidth: "100%", height: "600px", border: "none" }}
                   title="Book a meeting"
+                  loading="lazy"
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
                 />
               </div>
               <div className="mt-4 p-4 bg-gold/5 border border-gold/20 rounded-lg text-center">
@@ -291,28 +310,28 @@ export default function BookMeetingClient() {
         >
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-foreground">
-              What Our Clients Say
+              {lang === "de" ? "Was unsere Kunden sagen" : "What Our Clients Say"}
             </h2>
-            <p className="text-muted-foreground">See why businesses trust Don Va</p>
+            <p className="text-muted-foreground">{lang === "de" ? "Warum Unternehmen uns vertrauen" : "See why businesses trust us"}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
                 name: "Sarah Johnson",
                 role: "CEO, TechStart Inc",
-                text: "Don Va transformed our operations. The consultation was thorough and the onboarding was seamless.",
+                text: "The consultation was clear and actionable. We had a plan for inbound support within days.",
                 rating: 5,
               },
               {
                 name: "Michael Chen",
                 role: "Founder, Digital Growth",
-                text: "Best decision we made. Our VA has become an integral part of our team within weeks.",
+                text: "Our outbound team ramped fast and the reporting is solid. Great communication throughout.",
                 rating: 5,
               },
               {
                 name: "Emma Davis",
                 role: "Director, MarketPro",
-                text: "Professional, reliable, and cost-effective. Couldn't ask for more from a VA service.",
+                text: "Professional, reliable, and cost-effective. Our CSAT improved within the first month.",
                 rating: 5,
               },
             ].map((t, idx) => (

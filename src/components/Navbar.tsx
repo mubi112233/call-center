@@ -29,11 +29,11 @@ export const Navbar = () => {
       const el = document.getElementById(hash.replace("#", ""));
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else if (attempts < 10) {
-        setTimeout(() => tryScroll(attempts + 1), 100);
+      } else if (attempts < 50) {
+        setTimeout(() => tryScroll(attempts + 1), 200);
       }
     };
-    tryScroll();
+    setTimeout(() => tryScroll(), 50);
   }, [pathname]);
 
   const getCurrentLang = () => {
@@ -83,7 +83,8 @@ export const Navbar = () => {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
-      router.push(`${currentLang === "de" ? "/de" : "/en"}${hash}`);
+      // Cross-page hash navigation: use native navigation for reliable scroll
+      window.location.href = `${currentLang === "de" ? "/de" : "/en"}${hash}`;
     }
     setIsOpen(false);
   };

@@ -39,7 +39,7 @@ export async function generateMetadata({
 
   if (!post) return {};
 
-  const title = `${post.title} | DON VA`;
+  const title = `${post.title} | Call Center`;
   const description = post.excerpt?.substring(0, 160) || "";
   const seg = publicLocalePathSegment(lang);
   const pathAfterLocale = `blog/${slug}`;
@@ -57,7 +57,7 @@ export async function generateMetadata({
       type: "article",
       locale: seg === "de" ? "de_DE" : "en_US",
       alternateLocale: seg === "de" ? "en_US" : "de_DE",
-      siteName: "DON VA",
+      siteName: "Call Center",
       images: post.image ? [{ url: post.image, width: 1200, height: 630, alt: post.title }] : [],
     },
     twitter: {

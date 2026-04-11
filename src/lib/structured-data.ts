@@ -24,12 +24,12 @@ export function generateBlogStructuredData({
     "description": description,
     "author": {
       "@type": "Organization",
-      "name": "DON VA",
+      "name": "Call Center",
       "url": SITE_URL
     },
     "publisher": {
       "@type": "Organization",
-      "name": "DON VA",
+      "name": "Call Center",
       "logo": {
         "@type": "ImageObject",
         "url": absoluteUrl("/og-image.jpg")
@@ -73,7 +73,7 @@ export function generateServiceStructuredData({
     },
     "areaServed": areaServed,
     "hasOfferCatalog": hasOfferCatalog,
-    "serviceType": "Virtual Assistant Services"
+    "serviceType": "Call Center Services"
   };
 }
 
@@ -130,6 +130,58 @@ export function generateFAQSchema(faqs: FAQItem[]) {
         "text": faq.answer,
       },
     })),
+  };
+}
+
+interface CaseStudyDataProps {
+  title: string;
+  description: string;
+  company: string;
+  industry: string;
+  url: string;
+  image?: string;
+  datePublished?: string;
+}
+
+export function generateCaseStudySchema({
+  title,
+  description,
+  company,
+  industry,
+  url,
+  image,
+  datePublished,
+}: CaseStudyDataProps) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `${company} - ${title}`,
+    description,
+    image: image || absoluteUrl("/og-image.jpg"),
+    datePublished: datePublished || new Date().toISOString(),
+    dateModified: datePublished || new Date().toISOString(),
+    author: {
+      "@type": "Organization",
+      name: "Call Center",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Call Center",
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/og-image.jpg"),
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    about: {
+      "@type": "Organization",
+      name: company,
+      industry,
+    },
   };
 }
 

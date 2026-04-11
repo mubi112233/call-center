@@ -14,29 +14,29 @@ export async function generateMetadata({
 
   const isDe = seg === "de";
   const title = isDe
-    ? "Blog — Tipps zu virtuellen Assistenten & Remote-Teams | DON VA"
-    : "Blog — Virtual Assistant Tips & Remote Work | DON VA";
+    ? "Blog — Call Center Insights & Kundenservice-Tipps | Support-Lösungen"
+    : "Blog — Call Center Insights & Customer Support Tips | Service Solutions";
   const description = isDe
-    ? "Einblicke, Tipps und Best Practices zu virtuellen Assistenten, Outsourcing und skalierbaren Teams — auf Deutsch."
-    : "Insights, tips, and best practices for virtual assistants, outsourcing, and scalable remote teams.";
+    ? "Praxisnahe Tipps und Best Practices für Call Center, Kundenservice, Inbound/Outbound-Support und Kundenbindung — auf Deutsch."
+    : "Actionable tips and best practices for call centers, customer support, inbound/outbound calling, and client retention.";
 
   return {
     title,
     description,
     keywords: isDe
       ? [
-          "virtuelle assistenz blog",
-          "virtueller assistent tipps",
-          "remote team deutsch",
-          "outsourcing VA",
-          "DON VA",
+          "call center blog",
+          "kundenservice tipps",
+          "inbound support deutsch",
+          "outbound calling",
+          "call center best practices",
         ]
       : [
-          "virtual assistant blog",
-          "remote team tips",
-          "VA outsourcing",
-          "scale with VAs",
-          "DON VA",
+          "call center blog",
+          "customer support tips",
+          "inbound calling guide",
+          "outbound sales calling",
+          "call center best practices",
         ],
     alternates: {
       canonical,
@@ -49,8 +49,8 @@ export async function generateMetadata({
       type: "website",
       locale: isDe ? "de_DE" : "en_US",
       alternateLocale: isDe ? "en_US" : "de_DE",
-      siteName: "DON VA",
-      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "DON VA" }],
+      siteName: "Call Center",
+      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Call Center — Inbound & Outbound Support" }],
     },
     twitter: {
       card: "summary_large_image",

@@ -1,10 +1,21 @@
 import { Hero } from "@/components/Hero";
 import { Navbar } from "@/components/Navbar";
-import { HomeBelowFold } from "@/components/HomeBelowFold.hybrid";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { fetchApiData, API_ENDPOINTS, normalizeLanguage } from "@/lib/api";
 import { SITE_URL, absoluteUrl, hreflangAlternates, publicLocalePathSegment } from "@/lib/site-url";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+// Dynamically import below-fold components to reduce initial bundle
+const HomeBelowFold = dynamic(() => import("@/components/HomeBelowFold.hybrid").then(mod => ({ default: mod.HomeBelowFold })), {
+  loading: () => (
+    <div className="min-h-[600px] bg-background flex items-center justify-center">
+      <div className="w-8 h-8 border-2 border-gold/20 border-t-gold rounded-full animate-spin" />
+    </div>
+  ),
+  ssr: true,
+});
 
 export const revalidate = 3600;
 
@@ -31,32 +42,33 @@ export async function generateMetadata({
   const title =
     hero?.metaTitle ||
     (lang === "ge"
-      ? "DON VA – Virtuelle Assistenten & Remote-Teams | Geprüfte VAs"
-      : "DON VA – Virtual Assistant Services | German-Speaking VAs");
+      ? "Call Center — Inbound & Outbound Support | Professionelle Agenten"
+      : "Call Center — Inbound & Outbound Support | Professional Agents");
   const description =
     hero?.metaDescription ||
     (lang === "ge"
-      ? "Geprüfte, deutschsprachige virtuelle Assistenten für deutlich weniger als lokale Einstellungen. Skalieren Sie Ihr Team schnell und sicher — ideal für DACH."
-      : "Hire pre-vetted, German-speaking virtual assistants for far less than local hires. Scale your team in days with quality control built in.");
+      ? "Professioneller Call Center-Service für Inbound- und Outbound-Support. Skalieren Sie Ihr Team schnell mit qualifizierten Agents — ideal für DACH."
+      : "Professional call center services for inbound and outbound support. Scale your team quickly with qualified agents — perfect for DACH region.");
   const keywordsFromHero = hero?.metaKeywords
     ? hero.metaKeywords.split(",").map((k: string) => k.trim())
     : null;
   const defaultDeKeywords = [
-    "virtuelle assistenz",
-    "virtueller assistent deutsch",
-    "deutschsprachiger VA",
-    "remote assistent",
-    "outsourcing deutschland",
-    "virtuelle assistenz agentur",
-    "DON VA",
+    "call center",
+    "inbound support",
+    "outbound calling",
+    "kundenservice",
+    "telefon support",
+    "call center deutschland",
+    "agent service",
   ];
   const defaultEnKeywords = [
-    "virtual assistant",
-    "German speaking VA",
-    "remote assistant",
-    "outsource admin",
-    "DACH business support",
-    "DON VA",
+    "call center",
+    "inbound support",
+    "outbound calling",
+    "customer service",
+    "phone support",
+    "call center agents",
+    "DACH support",
   ];
   const keywords = keywordsFromHero ?? (lang === "ge" ? defaultDeKeywords : defaultEnKeywords);
   const pathSeg = publicLocalePathSegment(lang);
@@ -76,7 +88,7 @@ export async function generateMetadata({
       description,
       url: canonical,
       type: "website",
-      siteName: "DON VA",
+      siteName: "Call Center",
       locale: lang === "ge" ? "de_DE" : "en_US",
       alternateLocale: lang === "ge" ? "en_US" : "de_DE",
       images: [
@@ -84,7 +96,7 @@ export async function generateMetadata({
           url: "/og-image.jpg",
           width: 1200,
           height: 630,
-          alt: lang === "ge" ? "DON VA — Virtuelle Assistenten" : "DON VA — Virtual assistant services",
+          alt: lang === "ge" ? "Call Center — Inbound & Outbound Support" : "Call Center — Inbound & Outbound Support",
         },
       ],
     },
@@ -110,10 +122,10 @@ const pageJsonLd = (baseUrl: string) => ({
   en: {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "DON VA Virtual Assistant Services",
-    provider: { "@type": "Organization", name: "DON VA" },
+    name: "Call Center Inbound & Outbound Support Services",
+    provider: { "@type": "Organization", name: "Call Center" },
     description:
-      "Pre-vetted, German-speaking virtual assistants for growing teams — strong fit for DACH and global companies.",
+      "Professional call center services for inbound and outbound support. Scale your team quickly with qualified agents — perfect for DACH region.",
     areaServed: [
       { "@type": "Country", name: "Germany" },
       { "@type": "Country", name: "Austria" },
@@ -126,10 +138,10 @@ const pageJsonLd = (baseUrl: string) => ({
   ge: {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "DON VA Virtuelle Assistenten",
-    provider: { "@type": "Organization", name: "DON VA" },
+    name: "Call Center Inbound- & Outbound-Support",
+    provider: { "@type": "Organization", name: "Call Center" },
     description:
-      "Geprüfte, deutschsprachige virtuelle Assistenten für Unternehmen in DACH — schnelle Einarbeitung und laufende Qualitätskontrolle.",
+      "Professioneller Call Center-Service für Inbound- und Outbound-Support. Skalieren Sie Ihr Team schnell mit qualifizierten Agents — ideal für DACH.",
     areaServed: [
       { "@type": "Country", name: "Germany" },
       { "@type": "Country", name: "Austria" },

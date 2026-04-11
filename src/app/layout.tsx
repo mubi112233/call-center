@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import { headers } from "next/headers";
+import Script from "next/script";
 import "./globals.css";
 import "@/styles/main.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -36,29 +37,43 @@ export const metadata: Metadata = {
     google: "l93HxOLqUBDjtuNfHM7OsWQd7i9MfSJo1fV_yaLAZrE",
   },
   title: {
-    default: "DON VA - Premium Virtual Assistants | Save 70% on Operations",
-    template: "%s | DON VA",
+    default: "Call Center - Inbound & Outbound Support | Professional Agents",
+    template: "%s | Call Center",
   },
   description:
-    "Hire pre-vetted, German-speaking virtual assistants for 80% less than local hires. Scale your team in days, not months.",
+    "Professional call center services for inbound and outbound support. Scale your team quickly with qualified agents — perfect for DACH region.",
   keywords: [
-    "virtual assistant",
-    "VA services",
-    "German speaking VA",
-    "remote assistant",
-    "business scaling",
-    "DON VA",
-    "virtuelle assistenz",
-    "deutschsprachiger VA",
+    "call center",
+    "inbound support",
+    "outbound calling",
+    "customer service",
+    "phone support",
+    "call center agents",
+    "DACH support",
   ],
-  authors: [{ name: "DON VA", url: SITE_URL }],
-  creator: "DON VA",
-  publisher: "DON VA",
+  authors: [{ name: "Call Center", url: SITE_URL }],
+  creator: "Call Center",
+  publisher: "Call Center",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180" },
+    ],
+    other: [
+      { rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#d4af37" },
+    ],
+  },
+  manifest: "/manifest.json",
   robots: {
     index: true,
     follow: true,
@@ -72,20 +87,20 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "DON VA",
-    title: "DON VA - Premium Virtual Assistants | Save 70% on Operations",
+    siteName: "Call Center",
+    title: "Call Center - Inbound & Outbound Support | Professional Agents",
     description:
-      "Hire pre-vetted, German-speaking virtual assistants for 80% less than local hires.",
+      "Professional call center services for inbound and outbound support.",
     url: absoluteUrl("/en"),
     locale: "en_US",
     alternateLocale: ["de_DE"],
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "DON VA — Virtual assistant services" }],
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Call Center — Inbound & Outbound Support" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DON VA - Premium Virtual Assistants | Save 70% on Operations",
+    title: "Call Center - Inbound & Outbound Support | Professional Agents",
     description:
-      "Hire pre-vetted, German-speaking virtual assistants for 80% less than local hires.",
+      "Professional call center services for inbound and outbound support.",
     images: [absoluteUrl("/og-image.jpg")],
   },
   alternates: {
@@ -101,11 +116,11 @@ export const metadata: Metadata = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "DON VA",
+  name: "Call Center",
   url: SITE_URL,
   logo: absoluteUrl("/favicon.ico"),
   description:
-    "Pre-vetted, German-speaking virtual assistants for growing businesses in the DACH region and worldwide.",
+    "Professional call center services for inbound and outbound support. Scale your team quickly with qualified agents — perfect for DACH region.",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
@@ -117,16 +132,16 @@ const organizationJsonLd = {
     { "@type": "Country", name: "Switzerland" },
     { "@type": "Place", name: "Worldwide" },
   ],
-  sameAs: ["https://linkedin.com/company/don-va", "https://twitter.com/don_va"],
+  sameAs: ["https://linkedin.com/company/call-center", "https://twitter.com/call_center"],
 };
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "DON VA",
+  name: "Call Center",
   url: SITE_URL,
   inLanguage: ["en-US", "de-DE"],
-  publisher: { "@type": "Organization", name: "DON VA" },
+  publisher: { "@type": "Organization", name: "Call Center" },
 };
 
 export default async function RootLayout({
@@ -138,17 +153,6 @@ export default async function RootLayout({
   return (
     <html lang={htmlLang} suppressHydrationWarning className={`${inter.variable} ${poppins.variable}`}>
       <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LNDGNQ7Z74" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-LNDGNQ7Z74');
-            `,
-          }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
@@ -173,6 +177,19 @@ export default async function RootLayout({
             <Toaster />
           </ThemeProvider>
         </DesignSystemProvider>
+        {/* Lazy load Google Analytics after page becomes interactive */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-LNDGNQ7Z74"
+          strategy="lazyOnload"
+        />
+        <Script id="google-analytics" strategy="lazyOnload">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-LNDGNQ7Z74');
+          `}
+        </Script>
       </body>
     </html>
   );
