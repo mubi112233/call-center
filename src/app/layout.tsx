@@ -37,19 +37,21 @@ export const metadata: Metadata = {
     google: "l93HxOLqUBDjtuNfHM7OsWQd7i9MfSJo1fV_yaLAZrE",
   },
   title: {
-    default: "Call Center - Inbound & Outbound Support | Professional Agents",
+    default: "Call Center DACH | Inbound & Outbound Support Services",
     template: "%s | Call Center",
   },
   description:
-    "Professional call center services for inbound and outbound support. Scale your team quickly with qualified agents — perfect for DACH region.",
+    "Professional call center services for DACH businesses. Scale your team with German-speaking agents for inbound & outbound support. Get started today.",
   keywords: [
-    "call center",
-    "inbound support",
-    "outbound calling",
-    "customer service",
-    "phone support",
-    "call center agents",
+    "call center DACH",
+    "German call center",
+    "inbound support Germany",
+    "outbound calling DACH",
+    "customer service Germany",
+    "phone support Austria",
+    "call center agents Switzerland",
     "DACH support",
+    "German-speaking agents",
   ],
   authors: [{ name: "Call Center", url: SITE_URL }],
   creator: "Call Center",
@@ -88,19 +90,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Call Center",
-    title: "Call Center - Inbound & Outbound Support | Professional Agents",
+    title: "Call Center DACH | Inbound & Outbound Support Services",
     description:
-      "Professional call center services for inbound and outbound support.",
+      "Professional call center services for DACH businesses. Scale your team with German-speaking agents for inbound & outbound support.",
     url: absoluteUrl("/en"),
     locale: "en_US",
     alternateLocale: ["de_DE"],
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Call Center — Inbound & Outbound Support" }],
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Call Center — DACH Inbound & Outbound Support" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Call Center - Inbound & Outbound Support | Professional Agents",
+    title: "Call Center DACH | Inbound & Outbound Support Services",
     description:
-      "Professional call center services for inbound and outbound support.",
+      "Professional call center services for DACH businesses. Scale your team with German-speaking agents for inbound & outbound support.",
     images: [absoluteUrl("/og-image.jpg")],
   },
   alternates: {
@@ -120,7 +122,7 @@ const organizationJsonLd = {
   url: SITE_URL,
   logo: absoluteUrl("/favicon.ico"),
   description:
-    "Professional call center services for inbound and outbound support. Scale your team quickly with qualified agents — perfect for DACH region.",
+    "Professional call center services for DACH businesses. Scale your team with German-speaking agents for inbound & outbound support.",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",

@@ -4,8 +4,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { fetchApiData, API_ENDPOINTS, normalizeLanguage } from "@/lib/api";
 import { SITE_URL, absoluteUrl, hreflangAlternates, publicLocalePathSegment } from "@/lib/site-url";
+import { fetchFAQData } from "@/lib/data-fetching";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
 
 // Dynamically import below-fold components to reduce initial bundle
 const HomeBelowFold = dynamic(() => import("@/components/HomeBelowFold.hybrid").then(mod => ({ default: mod.HomeBelowFold })), {
@@ -42,33 +42,37 @@ export async function generateMetadata({
   const title =
     hero?.metaTitle ||
     (lang === "ge"
-      ? "Call Center — Inbound & Outbound Support | Professionelle Agenten"
-      : "Call Center — Inbound & Outbound Support | Professional Agents");
+      ? "Call Center DACH | Inbound & Outbound Support"
+      : "Call Center DACH | Inbound & Outbound Support");
   const description =
     hero?.metaDescription ||
     (lang === "ge"
-      ? "Professioneller Call Center-Service für Inbound- und Outbound-Support. Skalieren Sie Ihr Team schnell mit qualifizierten Agents — ideal für DACH."
-      : "Professional call center services for inbound and outbound support. Scale your team quickly with qualified agents — perfect for DACH region.");
+      ? "Professioneller Call-Center-Service für DACH-Unternehmen. Skalieren Sie mit deutschsprachigen Agents für Inbound & Outbound. Jetzt starten."
+      : "Professional call center services for DACH businesses. Scale your team with German-speaking agents for inbound & outbound support.");
   const keywordsFromHero = hero?.metaKeywords
     ? hero.metaKeywords.split(",").map((k: string) => k.trim())
     : null;
   const defaultDeKeywords = [
-    "call center",
-    "inbound support",
-    "outbound calling",
-    "kundenservice",
-    "telefon support",
-    "call center deutschland",
-    "agent service",
-  ];
-  const defaultEnKeywords = [
-    "call center",
-    "inbound support",
-    "outbound calling",
-    "customer service",
-    "phone support",
+    "call center DACH",
+    "deutscher call center",
+    "inbound support deutschland",
+    "outbound calling DACH",
+    "kundenservice österreich",
+    "telefon support schweiz",
     "call center agents",
     "DACH support",
+    "deutschsprachige agents",
+  ];
+  const defaultEnKeywords = [
+    "call center DACH",
+    "German call center",
+    "inbound support Germany",
+    "outbound calling DACH",
+    "customer service Austria",
+    "phone support Switzerland",
+    "call center agents",
+    "DACH support",
+    "German-speaking agents",
   ];
   const keywords = keywordsFromHero ?? (lang === "ge" ? defaultDeKeywords : defaultEnKeywords);
   const pathSeg = publicLocalePathSegment(lang);
@@ -96,7 +100,7 @@ export async function generateMetadata({
           url: "/og-image.jpg",
           width: 1200,
           height: 630,
-          alt: lang === "ge" ? "Call Center — Inbound & Outbound Support" : "Call Center — Inbound & Outbound Support",
+          alt: lang === "ge" ? "Call Center — DACH Inbound & Outbound Support" : "Call Center — DACH Inbound & Outbound Support",
         },
       ],
     },
@@ -118,39 +122,79 @@ export async function generateMetadata({
   };
 }
 
-const pageJsonLd = (baseUrl: string) => ({
-  en: {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: "Call Center Inbound & Outbound Support Services",
-    provider: { "@type": "Organization", name: "Call Center" },
-    description:
-      "Professional call center services for inbound and outbound support. Scale your team quickly with qualified agents — perfect for DACH region.",
-    areaServed: [
-      { "@type": "Country", name: "Germany" },
-      { "@type": "Country", name: "Austria" },
-      { "@type": "Country", name: "Switzerland" },
-    ],
-    availableLanguage: ["English", "German"],
-    url: `${baseUrl}/en`,
-    inLanguage: "en-US",
-  },
-  ge: {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: "Call Center Inbound- & Outbound-Support",
-    provider: { "@type": "Organization", name: "Call Center" },
-    description:
-      "Professioneller Call Center-Service für Inbound- und Outbound-Support. Skalieren Sie Ihr Team schnell mit qualifizierten Agents — ideal für DACH.",
-    areaServed: [
-      { "@type": "Country", name: "Germany" },
-      { "@type": "Country", name: "Austria" },
-      { "@type": "Country", name: "Switzerland" },
-    ],
-    availableLanguage: ["Deutsch", "Englisch"],
-    url: `${baseUrl}/de`,
-    inLanguage: "de-DE",
-  },
+const serviceJsonLd = (baseUrl: string, lang: string) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: lang === "ge" ? "Call Center Inbound- & Outbound-Support" : "Call Center Inbound & Outbound Support Services",
+  provider: { "@type": "Organization", name: "Call Center" },
+  description:
+    lang === "ge"
+      ? "Professioneller Call-Center-Service für DACH-Unternehmen. Skalieren Sie mit deutschsprachigen Agents für Inbound & Outbound."
+      : "Professional call center services for DACH businesses. Scale your team with German-speaking agents for inbound & outbound support.",
+  areaServed: [
+    { "@type": "Country", name: "Germany" },
+    { "@type": "Country", name: "Austria" },
+    { "@type": "Country", name: "Switzerland" },
+  ],
+  availableLanguage: lang === "ge" ? ["Deutsch", "Englisch"] : ["English", "German"],
+  url: `${baseUrl}/${lang === "ge" ? "de" : "en"}`,
+  inLanguage: lang === "ge" ? "de-DE" : "en-US",
+});
+
+const faqPageJsonLd = (faqs: { question: string; answer: string }[]) => ({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+});
+
+const pricingJsonLd = (lang: string) => ({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: lang === "ge" ? "Call Center-Agent-Pakete" : "Call Center Agent Packages",
+  description:
+    lang === "ge"
+      ? "Flexible Call-Center-Agent-Pakete für DACH-Unternehmen. Wählen Sie zwischen Starter, Professional und Enterprise."
+      : "Flexible call center agent packages for DACH businesses. Choose Starter, Professional, or Enterprise.",
+  brand: { "@type": "Organization", name: "Call Center" },
+  offers: [
+    {
+      "@type": "Offer",
+      name: lang === "ge" ? "Starter" : "Starter",
+      description: lang === "ge" ? "10h / Woche" : "10h / week",
+      price: "369",
+      priceCurrency: "EUR",
+      priceValidUntil: "2026-12-31",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/${lang === "ge" ? "de" : "en"}#pricing`,
+    },
+    {
+      "@type": "Offer",
+      name: lang === "ge" ? "Professional" : "Professional",
+      description: lang === "ge" ? "20h / Woche" : "20h / week",
+      price: "629",
+      priceCurrency: "EUR",
+      priceValidUntil: "2026-12-31",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/${lang === "ge" ? "de" : "en"}#pricing`,
+    },
+    {
+      "@type": "Offer",
+      name: lang === "ge" ? "Enterprise" : "Enterprise",
+      description: lang === "ge" ? "40h / Woche" : "40h / week",
+      price: "1169",
+      priceCurrency: "EUR",
+      priceValidUntil: "2026-12-31",
+      availability: "https://schema.org/InStock",
+      url: `${SITE_URL}/${lang === "ge" ? "de" : "en"}#pricing`,
+    },
+  ],
 });
 
 export default async function HomeLangPage({
@@ -166,14 +210,25 @@ export default async function HomeLangPage({
   }
 
   const lang = rawLang === 'de' || rawLang === 'ge' ? 'ge' : 'en';
-  const jsonLd = pageJsonLd(SITE_URL)[lang];
+  const [serviceLd, faqData] = await Promise.all([
+    Promise.resolve(serviceJsonLd(SITE_URL, lang)),
+    fetchFAQData(lang).catch(() => []),
+  ]);
+  const faqLd = faqData.length > 0 ? faqPageJsonLd(faqData) : null;
+  const priceLd = pricingJsonLd(lang);
+
+  const schemas: any[] = [serviceLd, priceLd];
+  if (faqLd) schemas.push(faqLd);
 
   return (
     <div className="min-h-screen bg-background">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {schemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <Navbar />
       <main id="main-content" className="overflow-x-hidden">
         <Hero />

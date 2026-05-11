@@ -50,9 +50,9 @@ export const Hero = () => {
 
   const fallbackData: HeroData = useMemo(() => isGe
     ? {
-        title: "Skalieren Sie Ihr Unternehmen mit dedizierten virtuellen Assistenten",
+        title: "Skalieren Sie mit einem deutschsprachigen Call Center für DACH",
         subtitle:
-          "Stellen Sie geprüfte, deutschsprachige virtuelle Assistenten für 80% weniger als lokale Einstellungen ein. Skalieren Sie Ihr Team in Tagen, nicht Monaten.",
+          "Stellen Sie geprüfte, deutschsprachige Call-Center-Agents für 80% weniger als lokale Einstellungen ein. Skalieren Sie Ihr Team in Tagen, nicht Monaten.",
         tagline: "Von 200+ wachsenden Unternehmen vertraut",
         image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=900&fit=crop&q=80",
         ctaPrimary: "Jetzt starten",
@@ -60,9 +60,9 @@ export const Hero = () => {
         stats: { clients: "200+", costSaved: "70%", rating: "4.9/5" },
       }
     : {
-        title: "Scale Your Business with Dedicated Virtual Assistants",
+        title: "Scale with a German-Speaking Call Center for DACH",
         subtitle:
-          "Hire pre-vetted, German-speaking virtual assistants for 80% less than local hires. Scale your team in days, not months.",
+          "Hire pre-vetted, German-speaking call center agents for 80% less than local hires. Scale your team in days, not months.",
         tagline: "Trusted by 200+ Growing Businesses",
         image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=900&fit=crop&q=80",
         ctaPrimary: "Get Started Today",
@@ -211,7 +211,7 @@ export const Hero = () => {
                   );
                 }}
                 className="group relative w-full sm:w-auto text-sm sm:text-base md:text-lg px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 h-auto font-bold shadow-gold-lg transform hover:scale-[1.06] hover:-translate-y-2 transition-all duration-300 hover:brightness-110 cursor-pointer overflow-hidden rounded-xl border-2 border-transparent hover:border-yellow-400/30 text-foreground"
-                aria-label="Get started with Don VA virtual assistant services"
+                aria-label="Get started with Call Center DACH support services"
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent"
@@ -297,7 +297,7 @@ export const Hero = () => {
               <motion.div style={{ transform: "translateZ(20px)" }}>
                 <Image
                   src={heroImage}
-                  alt={isGe ? "Virtueller Assistent am Arbeiten" : "Virtual Assistant Working"}
+                  alt={isGe ? "Deutschsprachiger Call-Center-Agent arbeitet remote für DACH-Unternehmen" : "German-speaking call center agent working remotely for DACH businesses"}
                   width={1200}
                   height={900}
                   className="w-full h-auto object-cover"

@@ -95,7 +95,7 @@ export default function BookMeetingClient() {
                 <Button
                   onClick={() =>
                     window.open(
-                      "https://calendly.com/mmubasharshahzad40/new-meeting",
+                      "https://calendly.com/d/cyhx-wdw-b57",
                       "_blank",
                       "noopener,noreferrer"
                     )
@@ -283,7 +283,7 @@ export default function BookMeetingClient() {
             <div className="lg:sticky lg:top-24">
               <div className="bg-card border border-border rounded-xl p-2 shadow-lg">
                 <iframe
-                  src="https://calendly.com/mmubasharshahzad40/new-meeting?embed_domain=don-va.com&embed_type=Inline"
+                  src="https://calendly.com/d/cyhx-wdw-b57"
                   className="rounded-lg"
                   style={{ minWidth: "100%", height: "600px", border: "none" }}
                   title="Book a meeting"

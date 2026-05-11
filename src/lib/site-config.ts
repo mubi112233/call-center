@@ -21,8 +21,8 @@ const rawTenantId = process.env.NEXT_PUBLIC_TENANT_ID || process.env.VITE_DATABA
 const resolvedTenantId = rawTenantId === 'socal_media_agency' ? 'socialmediaAccountmangement' : rawTenantId;
 
 export const siteConfig: SiteConfig = {
-  brandName: "Call Center",
-  brandMarkText: "CC",
+  brandName: "DON Call",
+  brandMarkText: "DC",
   defaultLocale: "en",
   apiBase: process.env.NEXT_PUBLIC_API_BASE || "https://api.don-va.com",
   tenantId: resolvedTenantId,
