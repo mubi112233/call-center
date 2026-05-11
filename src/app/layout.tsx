@@ -34,7 +34,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   verification: {
-    google: "l93HxOLqUBDjtuNfHM7OsWQd7i9MfSJo1fV_yaLAZrE",
+    google: "Eo4QyZilSSkdGnrvofWrxLzv3P1l199hCB8eC-vTFw4",
   },
   title: {
     default: "Call Center DACH | Inbound & Outbound Support Services",
@@ -181,7 +181,7 @@ export default async function RootLayout({
         </DesignSystemProvider>
         {/* Lazy load Google Analytics after page becomes interactive */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-Q75404R5F8"
+          src="https://www.googletagmanager.com/gtag/js?id=G-X4G918Z4GY"
           strategy="lazyOnload"
         />
         <Script id="google-analytics" strategy="lazyOnload">
@@ -189,7 +189,7 @@ export default async function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-Q75404R5F8');
+            gtag('config', 'G-X4G918Z4GY');
           `}
         </Script>
       </body>
