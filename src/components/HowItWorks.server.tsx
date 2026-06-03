@@ -32,15 +32,15 @@ export async function HowItWorks({ lang }: { lang: string }) {
               key={step.key}
               className={`flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-10 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
             >
-              <div className="flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-gold via-primary to-gold flex items-center justify-center shadow-[0_20px_60px_-15px_hsl(220_100%_50%/0.6)] relative group">
+              <div className="flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-gold via-primary to-gold flex items-center justify-center shadow-elegant relative group">
                 <div className="absolute inset-0 rounded-full bg-gold/20 blur-xl group-hover:blur-2xl transition-all duration-500" />
-                <step.icon className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 text-black relative z-10" />
+                <step.icon className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 text-foreground relative z-10" />
                 <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 md:-top-1 md:-right-1 w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-foreground text-gold rounded-full flex items-center justify-center text-xs sm:text-sm md:text-base font-bold">
                   {index + 1}
                 </div>
               </div>
               
-              <div className="flex-1 bg-card rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 hover:shadow-[0_25px_60px_-15px_hsl(45_80%_55%/0.4)] transition-all duration-500 group">
+              <div className="flex-1 bg-card rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 hover:shadow-gold-lg transition-all duration-500 group">
                 <p className="text-gold font-bold text-sm uppercase tracking-wider mb-3 inline-block px-3 py-1 bg-gold/10 rounded-full">
                   {copy.steps[step.key as keyof typeof copy.steps].step}
                 </p>

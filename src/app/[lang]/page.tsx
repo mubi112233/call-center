@@ -4,18 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { fetchApiData, API_ENDPOINTS, normalizeLanguage } from "@/lib/api";
 import { SITE_URL, absoluteUrl, hreflangAlternates, publicLocalePathSegment } from "@/lib/site-url";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
-
-// Dynamically import below-fold components to reduce initial bundle
-const HomeBelowFold = dynamic(() => import("@/components/HomeBelowFold.hybrid").then(mod => ({ default: mod.HomeBelowFold })), {
-  loading: () => (
-    <div className="min-h-[600px] bg-background flex items-center justify-center">
-      <div className="w-8 h-8 border-2 border-gold/20 border-t-gold rounded-full animate-spin" />
-    </div>
-  ),
-  ssr: true,
-});
+import { HomeBelowFold } from "@/components/HomeBelowFold.hybrid";
 
 export const revalidate = 3600;
 

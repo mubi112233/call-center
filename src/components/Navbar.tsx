@@ -115,7 +115,7 @@ export const Navbar = () => {
             className="flex items-center space-x-2 sm:space-x-3 hover:bg-gold/10 rounded-lg px-2 py-1 transition-all duration-300"
           >
             <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-9 md:h-9 lg:w-10 lg:h-10 bg-gold rounded-lg flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110">
-              <span className="text-black font-bold text-base sm:text-lg md:text-lg lg:text-xl">
+              <span className="text-foreground font-bold text-base sm:text-lg md:text-lg lg:text-xl">
                 {siteConfig.brandMarkText}
               </span>
             </div>
@@ -174,7 +174,7 @@ export const Navbar = () => {
               onClick={() => {
                 router.push(localizedPath(siteLocale, siteConfig.routes.bookMeeting));
               }}
-              className="text-sm md:text-sm lg:text-base px-4 md:px-4 lg:px-7 py-2 md:py-2 lg:py-2.5 bg-gold text-black rounded-lg hover:shadow-lg hover:shadow-gold/30 transition-all duration-300 hover:scale-105 font-semibold whitespace-nowrap"
+              className="text-sm md:text-sm lg:text-base px-4 md:px-4 lg:px-7 py-2 md:py-2 lg:py-2.5 bg-gold text-foreground rounded-lg hover:shadow-lg hover:shadow-gold/30 transition-all duration-300 hover:scale-105 font-semibold whitespace-nowrap"
             >
               {currentLang === "de" ? "Jetzt starten" : "Get Started"}
             </button>
@@ -251,7 +251,7 @@ export const Navbar = () => {
                         router.push(currentLang === "de" ? "/de/book-meeting" : "/en/book-meeting");
                         setIsOpen(false);
                       }}
-                      className="w-full text-center text-base py-3 bg-gold text-black rounded-lg font-semibold hover:shadow-lg transition-all duration-300"
+                      className="w-full text-center text-base py-3 bg-gold text-foreground rounded-lg font-semibold hover:shadow-lg transition-all duration-300"
                     >
                       {currentLang === "de" ? "Jetzt starten" : "Get Started"}
                     </button>

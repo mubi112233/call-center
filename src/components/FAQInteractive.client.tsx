@@ -7,12 +7,40 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { motion } from "framer-motion";
-import { HelpCircle, Shield, Zap } from "lucide-react";
+import { HelpCircle, Shield, Zap, Loader2 } from "lucide-react";
 import { getCopy } from "@/lib/copy";
-import type { FAQItem } from "@/lib/api";
+import { fetchFAQ, type FAQItem } from "@/lib/api";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
-export function FAQInteractive({ faqs, lang }: { faqs: FAQItem[]; lang: string }) {
+export function FAQInteractive({ lang: langProp }: { lang?: string }) {
+  const pathname = usePathname();
+  const lang = langProp ?? (pathname.startsWith("/ge") || pathname.startsWith("/de") ? "ge" : "en");
+  const [faqs, setFaqs] = useState<FAQItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchFAQ(lang).then((data) => {
+      if (data?.faqs) {
+        setFaqs([...data.faqs].sort((a, b) => a.order - b.order));
+      }
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, [lang]);
+
   const copy = getCopy(lang, "faq");
+
+  if (loading) {
+    return (
+      <section id="faq" className="relative py-8 sm:py-10 md:py-12 lg:py-14 bg-gradient-to-b from-background via-muted/30 to-background">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-4">
+          <div className="flex items-center justify-center py-20">
+            <Loader2 className="w-8 h-8 animate-spin text-gold" />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section

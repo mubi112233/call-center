@@ -42,7 +42,7 @@ export const ValueProposition = () => {
           {values.map((value, index) => (
             <motion.div 
               key={index}
-              className="group relative p-8 rounded-2xl bg-card border-2 border-gold/20 hover:border-gold hover:shadow-[0_20px_60px_-15px_hsl(45_80%_55%/0.4)] transition-all duration-500 hover:-translate-y-3"
+              className="group relative p-8 rounded-2xl bg-card border-2 border-gold/20 hover:border-gold hover:shadow-gold-lg transition-all duration-500 hover:-translate-y-3"
               initial={{ opacity: 0, y: 80, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -56,7 +56,7 @@ export const ValueProposition = () => {
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gold/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               <div className="relative">
-                <div className="mb-6 inline-flex p-4 rounded-xl bg-gold/10 text-gold group-hover:bg-gold group-hover:text-black group-hover:scale-110 transition-all duration-500 shadow-[0_8px_20px_-8px_hsl(45_80%_55%/0.3)]">
+                <div className="mb-6 inline-flex p-4 rounded-xl bg-gold/10 text-gold group-hover:bg-gold group-hover:text-foreground group-hover:scale-110 transition-all duration-500 shadow-gold">
                   <value.icon className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-gold transition-colors duration-300">

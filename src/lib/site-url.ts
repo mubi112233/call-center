@@ -1,10 +1,12 @@
 /**
- * Canonical site origin for metadata, sitemap, and JSON-LD.
- * Set NEXT_PUBLIC_SITE_URL in production to match your live domain.
+ * Central site URL used for metadata, OG images, sitemap, etc.
+ * Now centralized in tenant-config.ts
+ * Set the siteUrl in tenant-config.ts for each tenant.
  */
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://don-seo.com"
-) as string;
+import { getCurrentTenant } from "./tenant-config";
+
+/** Get site URL from centralized tenant-config.ts */
+export const SITE_URL = getCurrentTenant().siteUrl;
 
 export function absoluteUrl(path: string): string {
   const p = path.startsWith("/") ? path : `/${path}`;

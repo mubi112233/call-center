@@ -426,8 +426,8 @@ export const PricingDynamic = ({ lang }: { lang: string }) => {
 
                 <div className={`relative rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-500 group h-full ${
                   plan.highlighted
-                    ? 'bg-gradient-to-br from-gold/95 via-gold/98 to-amber-500 text-foreground shadow-[0_25px_70px_-15px_hsl(45_75%_52%/0.5)]'
-                    : 'bg-card border-2 border-border/60 hover:border-gold/80 hover:shadow-[0_25px_70px_-15px_hsl(45_75%_52%/0.4)]'
+                    ? 'bg-gradient-to-br from-gold/95 via-gold/98 to-primary text-foreground shadow-gold-lg'
+                    : 'bg-card border-2 border-border/60 hover:border-gold/80 hover:shadow-gold-lg'
                 }`}>
 
                   {/* Top accent line */}

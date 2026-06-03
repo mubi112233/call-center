@@ -89,7 +89,7 @@ export const WhyChooseUsCards = () => {
             return (
               <motion.div
                 key={item.title}
-                className="relative bg-card border border-border/60 rounded-2xl p-6 sm:p-7 hover:border-gold/50 hover:shadow-[0_20px_60px_-15px_hsl(45_80%_55%/0.2)] transition-all duration-500 group overflow-hidden"
+                className="relative bg-card border border-border/60 rounded-2xl p-6 sm:p-7 hover:border-gold/50 hover:shadow-elegant transition-all duration-500 group overflow-hidden"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

@@ -30,6 +30,8 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          dark: "hsl(var(--primary-dark))",
+          light: "hsl(var(--primary-light))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -46,6 +48,8 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          dark: "hsl(var(--accent-dark))",
+          light: "hsl(var(--accent-light))",
         },
         hover: {
           DEFAULT: "hsl(var(--hover))",
@@ -73,6 +77,15 @@ export default {
           "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
+        },
+        // ── New theme-aware tokens ──
+        heading: "hsl(var(--heading-color))",
+        subheading: "hsl(var(--subheading-color))",
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
+        cta: {
+          DEFAULT: "hsl(var(--cta))",
+          foreground: "hsl(var(--cta-foreground))",
         },
       },
       backgroundImage: {
