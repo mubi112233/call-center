@@ -50,9 +50,9 @@ export const Hero = () => {
 
   const fallbackData: HeroData = useMemo(() => isGe
     ? {
-        title: "Skalieren Sie Ihr Unternehmen mit dedizierten virtuellen Assistenten",
+        title: "Skalieren Sie mit einem deutschsprachigen Call Center für DACH",
         subtitle:
-          "Stellen Sie geprüfte, deutschsprachige virtuelle Assistenten für 80% weniger als lokale Einstellungen ein. Skalieren Sie Ihr Team in Tagen, nicht Monaten.",
+          "Stellen Sie geprüfte, deutschsprachige Call-Center-Agents für 80% weniger als lokale Einstellungen ein. Skalieren Sie Ihr Team in Tagen, nicht Monaten.",
         tagline: "Von 200+ wachsenden Unternehmen vertraut",
         image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=900&fit=crop&q=80",
         ctaPrimary: "Jetzt starten",
@@ -60,9 +60,9 @@ export const Hero = () => {
         stats: { clients: "200+", costSaved: "70%", rating: "4.9/5" },
       }
     : {
-        title: "Scale Your Business with Dedicated Virtual Assistants",
+        title: "Scale with a German-Speaking Call Center for DACH",
         subtitle:
-          "Hire pre-vetted, German-speaking virtual assistants for 80% less than local hires. Scale your team in days, not months.",
+          "Hire pre-vetted, German-speaking call center agents for 80% less than local hires. Scale your team in days, not months.",
         tagline: "Trusted by 200+ Growing Businesses",
         image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=900&fit=crop&q=80",
         ctaPrimary: "Get Started Today",
@@ -297,7 +297,7 @@ export const Hero = () => {
               <motion.div style={{ transform: "translateZ(20px)" }}>
                 <Image
                   src={heroImage}
-                  alt={isGe ? "Virtueller Assistent am Arbeiten" : "Virtual Assistant Working"}
+                  alt={isGe ? "Deutschsprachiger Call-Center-Agent arbeitet remote für DACH-Unternehmen" : "German-speaking call center agent working remotely for DACH businesses"}
                   width={1200}
                   height={900}
                   className="w-full h-auto object-cover"

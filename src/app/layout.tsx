@@ -33,22 +33,24 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   verification: {
-    google: "l93HxOLqUBDjtuNfHM7OsWQd7i9MfSJo1fV_yaLAZrE",
+    google: "Eo4QyZilSSkdGnrvofWrxLzv3P1l199hCB8eC-vTFw4",
   },
   title: {
-    default: "Call Center - Inbound & Outbound Support | Professional Agents",
+    default: "Call Center DACH | Inbound & Outbound Support Services",
     template: "%s | Call Center",
   },
   description:
-    "Professional call center services for inbound and outbound support. Scale your team quickly with qualified agents — perfect for DACH region.",
+    "Professional call center services for DACH businesses. Scale your team with German-speaking agents for inbound & outbound support. Get started today.",
   keywords: [
-    "call center",
-    "inbound support",
-    "outbound calling",
-    "customer service",
-    "phone support",
-    "call center agents",
+    "call center DACH",
+    "German call center",
+    "inbound support Germany",
+    "outbound calling DACH",
+    "customer service Germany",
+    "phone support Austria",
+    "call center agents Switzerland",
     "DACH support",
+    "German-speaking agents",
   ],
   authors: [{ name: "Call Center", url: SITE_URL }],
   creator: "Call Center",
@@ -87,19 +89,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Call Center",
-    title: "Call Center - Inbound & Outbound Support | Professional Agents",
+    title: "Call Center DACH | Inbound & Outbound Support Services",
     description:
-      "Professional call center services for inbound and outbound support.",
+      "Professional call center services for DACH businesses. Scale your team with German-speaking agents for inbound & outbound support.",
     url: absoluteUrl("/en"),
     locale: "en_US",
     alternateLocale: ["de_DE"],
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Call Center — Inbound & Outbound Support" }],
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Call Center — DACH Inbound & Outbound Support" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Call Center - Inbound & Outbound Support | Professional Agents",
+    title: "Call Center DACH | Inbound & Outbound Support Services",
     description:
-      "Professional call center services for inbound and outbound support.",
+      "Professional call center services for DACH businesses. Scale your team with German-speaking agents for inbound & outbound support.",
     images: [absoluteUrl("/og-image.jpg")],
   },
   alternates: {
@@ -119,7 +121,7 @@ const organizationJsonLd = {
   url: SITE_URL,
   logo: absoluteUrl("/favicon.ico"),
   description:
-    "Professional call center services for inbound and outbound support. Scale your team quickly with qualified agents — perfect for DACH region.",
+    "Professional call center services for DACH businesses. Scale your team with German-speaking agents for inbound & outbound support.",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
@@ -174,7 +176,7 @@ export default async function RootLayout({
         </ThemeProvider>
         {/* Lazy load Google Analytics after page becomes interactive */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-Q75404R5F8"
+          src="https://www.googletagmanager.com/gtag/js?id=G-X4G918Z4GY"
           strategy="lazyOnload"
         />
         <Script id="google-analytics" strategy="lazyOnload">
@@ -182,7 +184,7 @@ export default async function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-Q75404R5F8');
+            gtag('config', 'G-X4G918Z4GY');
           `}
         </Script>
       </body>
