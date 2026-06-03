@@ -199,11 +199,11 @@ export default async function HomeLangPage({
   }
 
   const lang = rawLang === 'de' || rawLang === 'ge' ? 'ge' : 'en';
-  const [serviceLd, faqData] = await Promise.all([
+  const [serviceLd, rawFaqData] = await Promise.all([
     Promise.resolve(serviceJsonLd(SITE_URL, lang)),
-    fetchFAQData(lang).catch(() => []),
+    fetchApiData<{ faqs: { question: string; answer: string }[] }>(API_ENDPOINTS.FAQ, normalizeLanguage(lang)).catch(() => null),
   ]);
-  const faqLd = faqData.length > 0 ? faqPageJsonLd(faqData) : null;
+  const faqLd = rawFaqData?.faqs?.length ? faqPageJsonLd(rawFaqData.faqs) : null;
   const priceLd = pricingJsonLd(lang);
 
   const schemas: any[] = [serviceLd, priceLd];
