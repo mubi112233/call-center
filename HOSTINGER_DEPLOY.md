@@ -32,7 +32,7 @@ Do **not** upload:
 Set these values in Hostinger environment variables:
 
 - `NEXT_PUBLIC_API_BASE=http://your-backend-server:5001`  # Replace with actual backend URL/IP
-- `NEXT_PUBLIC_TENANT_ID=donva`
+- `NEXT_PUBLIC_TENANT_ID=callcenter`
 - `NODE_ENV=production`
 
 **Important:** Do NOT use `http://localhost:5001` as the API_BASE. The backend server must be accessible from the internet. Use the server's public IP or domain (e.g., `http://srv1201161:5001` or `https://api.yourdomain.com`).
