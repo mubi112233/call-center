@@ -3,21 +3,18 @@
  * 
  * This utility provides consistent API fetching with proper headers
  * including the X-Tenant-ID header for multi-tenancy support.
+ * 
+ * Tenant ID and API Base are now centralized in tenant-config.ts
+ * Change tenant in one place: src/lib/tenant-config.ts
  */
 
-// API Configuration
-const getApiBase = () =>
-  process.env.NEXT_PUBLIC_API_BASE ||
-  'https://api.don-va.com';
+import { getEffectiveTenantId, getCurrentTenant } from "./tenant-config";
 
-const getTenantId = () => {
-  const tenant = process.env.NEXT_PUBLIC_TENANT_ID ||
-    process.env.VITE_DATABASE ||
-    'socialmediaaccountmanagement';
-  // Temporary override to force new tenant until .env.local is updated
-  const finalTenant = tenant === 'socal_media_agency' ? 'socialmediaAccountmangement' : tenant;
-  return finalTenant;
-};
+/** Get API base URL from centralized tenant-config.ts */
+const getApiBase = () => getCurrentTenant().apiBase;
+
+/** Get tenant ID from centralized tenant-config.ts */
+const getTenantId = () => getEffectiveTenantId();
 
 /**
  * Creates fetch options with proper headers including X-Tenant-ID

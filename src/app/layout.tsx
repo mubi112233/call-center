@@ -6,7 +6,6 @@ import "./globals.css";
 import "@/styles/main.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
-import { DesignSystemProvider } from "@/components/DesignSystemProvider";
 import { SITE_URL, absoluteUrl } from "@/lib/site-url";
 
 const inter = Inter({
@@ -165,20 +164,16 @@ export default async function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`} suppressHydrationWarning>
-        <a href="#main-content" className="skip-to-content">
-          Skip to main content
-        </a>
-        <DesignSystemProvider defaultTheme="blue">
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            <Toaster />
-          </ThemeProvider>
-        </DesignSystemProvider>
+      
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster />
+        </ThemeProvider>
         {/* Lazy load Google Analytics after page becomes interactive */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-X4G918Z4GY"

@@ -6,7 +6,34 @@
 
 export const copy = {
   en: {
-    // How It Works
+    // ═══════════════════════════════════════════════════════════
+    //  HERO SECTION
+    // ═══════════════════════════════════════════════════════════
+    hero: {
+      badge: "Trusted by 200+ Growing Businesses",
+      title: "Scale Your Business with Dedicated Virtual Assistants",
+      subtitle: "Hire pre-vetted, German-speaking virtual assistants for 80% less than local hires. Scale your team in days, not months.",
+      ctaPrimary: "Get Started",
+      ctaSecondary: "Book a Call",
+      stats: {
+        clients: "200+",
+        costSaved: "70%",
+        rating: "4.9/5",
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    //  SERVICES SECTION
+    // ═══════════════════════════════════════════════════════════
+    services: {
+      badge: "Services",
+      heading: "Our Services",
+      subheading: "Comprehensive virtual assistant solutions tailored to your business needs. From administrative tasks to specialized support, we've got you covered.",
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    //  HOW IT WORKS
+    // ═══════════════════════════════════════════════════════════
     howItWorks: {
       badge: "How It Works",
       heading: "Get started in <span class=\"text-gold\">4 simple steps</span>",
@@ -35,11 +62,40 @@ export const copy = {
       }
     },
 
-    // Why Choose Us (fallback, API may provide its own)
+    // ═══════════════════════════════════════════════════════════
+    //  WHY CHOOSE US
+    // ═══════════════════════════════════════════════════════════
     whyChooseUs: {
       badge: "Why Choose Us",
       heading: "What makes us <span class=\"text-gold\">different</span>",
-      description: "German-speaking talent, native quality control, fast onboarding, and a zero‑risk guarantee.",
+      subheading: "German-speaking talent, native quality control, fast onboarding, and a zero‑risk guarantee.",
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    //  VALUE PROPOSITION
+    // ═══════════════════════════════════════════════════════════
+    valueProposition: {
+      badge: "Our Promise",
+      heading: "The <span class=\"text-gold\">Perfect VA Solution</span>",
+      subheading: "Experience the difference with our professional virtual assistants who are trained to deliver exceptional results.",
+      items: {
+        quality: {
+          title: "Expertly Vetted Professionals",
+          description: "Every virtual assistant is carefully screened and tested to ensure they meet our high standards of excellence.",
+        },
+        security: {
+          title: "Secure & Confidential",
+          description: "Your data and business information are protected with enterprise-grade security measures.",
+        },
+        speed: {
+          title: "Lightning Fast Onboarding",
+          description: "Get started within 24 hours. Our streamlined process ensures you have the right assistant quickly.",
+        },
+        support: {
+          title: "Dedicated Support",
+          description: "Our team is always available to ensure smooth collaboration and address any concerns.",
+        },
+      },
     },
 
     // Testimonials
@@ -156,21 +212,88 @@ export const copy = {
       disclaimer: "All prices are per VA. Bulk discounts apply automatically. Setup fees are one-time charges."
     },
 
-    // Final CTA
+    // ═══════════════════════════════════════════════════════════
+    //  FINAL CTA
+    // ═══════════════════════════════════════════════════════════
     finalCTA: {
       badge: "Ready to Scale?",
-      title: "Start with <span class=\"text-gold\">DON VA</span> Today",
-      description: "Book a free consultation and see how we can transform your operations in 48 hours.",
+      headlineLine1: "Start with",
+      headlineLine2: "DON VA Today",
+      subheading: "Book a free consultation and see how we can transform your operations in 48 hours.",
+      benefits: ["No setup fees", "14-day trial", "Native managers", "24/7 support"],
+      primaryCta: "Book Free Meeting",
+      secondaryCta: "Chat on WhatsApp",
+      trust: {
+        consultationTime: "30 min",
+        consultationLabel: "Free consultation",
+        responseTime: "< 2 hrs",
+        responseLabel: "Avg. response time",
+        noCommitment: "No commitment",
+        noCommitmentLabel: "Cancel anytime",
+        footer: "No credit card required. Cancel anytime.",
+      },
+      stats: {
+        activeClients: "200+",
+        avgRoi: "3.5x",
+        satisfaction: "98%",
+        fastStart: "48h",
+      },
     },
 
-    // Value Proposition (if used)
-    valueProposition: {
-      heading: "Why <span class=\"text-gold\">Choose Us</span>",
+    // ═══════════════════════════════════════════════════════════
+    //  NAVIGATION & UI
+    // ═══════════════════════════════════════════════════════════
+    nav: {
+      services: "Services",
+      howItWorks: "How It Works",
+      pricing: "Pricing",
+      testimonials: "Testimonials",
+      faq: "FAQ",
+      contact: "Contact",
+      getStarted: "Get Started",
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    //  FOOTER
+    // ═══════════════════════════════════════════════════════════
+    footer: {
+      tagline: "Professional virtual assistant services to help you scale your business efficiently.",
+      company: "Company",
+      legal: "Legal",
+      followUs: "Follow Us",
+      allRightsReserved: "All rights reserved.",
     },
   },
 
   ge: {
-    // How It Works
+    // ═══════════════════════════════════════════════════════════
+    //  HERO SECTION
+    // ═══════════════════════════════════════════════════════════
+    hero: {
+      badge: "Von 200+ wachsenden Unternehmen vertraut",
+      title: "Skalieren Sie Ihr Unternehmen mit dedizierten virtuellen Assistenten",
+      subtitle: "Stellen Sie geprüfte, deutschsprachige virtuelle Assistenten für 80% weniger als lokale Einstellungen ein. Skalieren Sie Ihr Team in Tagen, nicht Monaten.",
+      ctaPrimary: "Jetzt starten",
+      ctaSecondary: "Termin vereinbaren",
+      stats: {
+        clients: "200+",
+        costSaved: "70%",
+        rating: "4.9/5",
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    //  SERVICES SECTION
+    // ═══════════════════════════════════════════════════════════
+    services: {
+      badge: "Dienstleistungen",
+      heading: "Unsere Dienstleistungen",
+      subheading: "Umfassende virtuelle Assistenzlösungen, die auf Ihre Geschäftsbedürfnisse zugeschnitten sind. Von administrativen Aufgaben bis hin zu spezialisierten Dienstleistungen.",
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    //  HOW IT WORKS
+    // ═══════════════════════════════════════════════════════════
     howItWorks: {
       badge: "Wie es funktioniert",
       heading: "Starten Sie in <span class=\"text-gold\">4 einfachen Schritten</span>",
@@ -199,11 +322,40 @@ export const copy = {
       }
     },
 
-    // Why Choose Us (fallback, API may provide its own)
+    // ═══════════════════════════════════════════════════════════
+    //  WHY CHOOSE US
+    // ═══════════════════════════════════════════════════════════
     whyChooseUs: {
       badge: "Warum wir",
       heading: "Was uns <span class=\"text-gold\">auszeichnet</span>",
-      description: "Deutschsprachige Talente, native Qualitätskontrolle, schnelles Onboarding und eine Null‑Risiko‑Garantie.",
+      subheading: "Deutschsprachige Talente, native Qualitätskontrolle, schnelles Onboarding und eine Null‑Risiko‑Garantie.",
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    //  VALUE PROPOSITION
+    // ═══════════════════════════════════════════════════════════
+    valueProposition: {
+      badge: "Unser Versprechen",
+      heading: "Die <span class=\"text-gold\">perfekte VA-Lösung</span>",
+      subheading: "Erleben Sie den Unterschied mit unseren professionellen virtuellen Assistenten, die darauf trainiert sind, außergewöhnliche Ergebnisse zu liefern.",
+      items: {
+        quality: {
+          title: "Sorgfältig geprüfte Fachkräfte",
+          description: "Jeder virtuelle Assistent wird sorgfältig geprüft und getestet, um unsere hohen Qualitätsstandards zu erfüllen.",
+        },
+        security: {
+          title: "Sicher & vertraulich",
+          description: "Ihre Daten und Geschäftsinformationen sind durch Sicherheitsmaßnahmen auf Unternehmensebene geschützt.",
+        },
+        speed: {
+          title: "Blitzschnelles Onboarding",
+          description: "Starten Sie innerhalb von 24 Stunden. Unser optimierter Prozess stellt sicher, dass Sie schnell den richtigen Assistenten haben.",
+        },
+        support: {
+          title: "Dedizierter Support",
+          description: "Unser Team ist immer verfügbar, um eine reibungslose Zusammenarbeit zu gewährleisten und Anliegen zu klären.",
+        },
+      },
     },
 
     // Testimonials
@@ -320,16 +472,56 @@ export const copy = {
       disclaimer: "All prices are per VA. Bulk discounts apply automatically. Setup fees are one-time charges."
     },
 
-    // Final CTA
+    // ═══════════════════════════════════════════════════════════
+    //  FINAL CTA
+    // ═══════════════════════════════════════════════════════════
     finalCTA: {
       badge: "Bereit zu skalieren?",
-      title: "Starten Sie noch heute mit <span class=\"text-gold\">DON VA</span>",
-      description: "Buchen Sie eine kostenlose Beratung und erleben Sie, wie wir Ihre Abläufe in 48 Stunden transformieren können.",
+      headlineLine1: "Starten Sie noch heute",
+      headlineLine2: "mit DON VA",
+      subheading: "Buchen Sie eine kostenlose Beratung und erleben Sie, wie wir Ihre Abläufe in 48 Stunden transformieren können.",
+      benefits: ["Keine Einrichtungsgebühren", "14-Tage-Test", "Native Manager", "24/7 Support"],
+      primaryCta: "Kostenloses Gespräch",
+      secondaryCta: "WhatsApp Chat",
+      trust: {
+        consultationTime: "30 Min",
+        consultationLabel: "Kostenlose Beratung",
+        responseTime: "< 2 Std",
+        responseLabel: "Ø Antwortzeit",
+        noCommitment: "Keine Bindung",
+        noCommitmentLabel: "Jederzeit kündbar",
+        footer: "Keine Kreditkarte erforderlich. Jederzeit kündbar.",
+      },
+      stats: {
+        activeClients: "200+",
+        avgRoi: "3,5x",
+        satisfaction: "98%",
+        fastStart: "48h",
+      },
     },
 
-    // Value Proposition (if used)
-    valueProposition: {
-      heading: "Warum <span class=\"text-gold\">wir</span>?",
+    // ═══════════════════════════════════════════════════════════
+    //  NAVIGATION & UI
+    // ═══════════════════════════════════════════════════════════
+    nav: {
+      services: "Dienstleistungen",
+      howItWorks: "Wie es funktioniert",
+      pricing: "Preise",
+      testimonials: "Testimonials",
+      faq: "FAQ",
+      contact: "Kontakt",
+      getStarted: "Jetzt starten",
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    //  FOOTER
+    // ═══════════════════════════════════════════════════════════
+    footer: {
+      tagline: "Professionelle virtuelle Assistenten-Dienste, die Ihnen helfen, Ihr Unternehmen effizient zu skalieren.",
+      company: "Unternehmen",
+      legal: "Rechtliches",
+      followUs: "Folgen Sie uns",
+      allRightsReserved: "Alle Rechte vorbehalten.",
     },
   },
 } as const;

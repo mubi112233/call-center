@@ -76,14 +76,14 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-1">
             <Link href={`/${lang}`} className="flex items-center gap-2 mb-4 group">
               <div className="w-9 h-9 bg-gold rounded-lg flex items-center justify-center">
-                <span className="text-black font-black text-lg">{siteConfig.brandMarkText}</span>
+                <span className="text-foreground font-black text-lg">{siteConfig.brandMarkText}</span>
               </div>
               <span className="text-xl font-bold text-foreground group-hover:text-gold transition-colors">{siteConfig.brandName}</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed mb-4">{c.tagline}</p>
             <Link
               href={localizedPath(lang, siteConfig.routes.bookMeeting)}
-              className="inline-block px-5 py-2.5 bg-gold text-black text-sm font-bold rounded-lg hover:bg-primary transition-colors"
+              className="inline-block px-5 py-2.5 bg-gold text-foreground text-sm font-bold rounded-lg hover:bg-primary transition-colors"
             >
               {isGe ? "Jetzt starten" : "Get Started"}
             </Link>

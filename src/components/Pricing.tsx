@@ -381,8 +381,8 @@ export const Pricing = () => {
               
               <div className={`relative rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-500 group h-full ${
                 plan.highlighted 
-                  ? 'bg-gradient-to-br from-primary/95 via-primary/98 to-primary text-foreground shadow-[0_25px_70px_-15px_hsl(220_100%_50%/0.5)]' 
-                  : 'bg-card border-2 border-border/60 hover:border-primary/80 hover:shadow-[0_25px_70px_-15px_hsl(220_100%_50%/0.4)]'
+                  ? 'bg-gradient-to-br from-primary/95 via-primary/98 to-primary text-foreground shadow-gold-lg' 
+                  : 'bg-card border-2 border-border/60 hover:border-primary/80 hover:shadow-gold-lg'
               }`}>
                 {/* Top accent line with animation */}
                 <motion.div 

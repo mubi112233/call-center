@@ -30,6 +30,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { fetchServices, Service } from "@/lib/api";
 import { SPACING } from "@/lib/constants";
+import { copy } from "@/lib/copy";
 import { usePathname } from "next/navigation";
 
 // Icon mapping for call center services - extend as needed
@@ -59,18 +60,7 @@ const iconMap: Record<string, any> = {
   Award,
 };
 
-const sectionCopy = {
-  en: {
-    badge: "Services",
-    heading: "Our Services",
-    description: "Comprehensive virtual assistant solutions tailored to your business needs. From administrative tasks to specialized support, we've got you covered.",
-  },
-  ge: {
-    badge: "Dienstleistungen",
-    heading: "Unsere Dienstleistungen",
-    description: "Umfassende virtuelle Assistenzlösungen, die auf Ihre Geschäftsbedürfnisse zugeschnitten sind. Von administrativen Aufgaben bis hin zu spezialisierten Dienstleistungen.",
-  },
-};
+// Use centralized copy from copy.ts
 
 export const Services = () => {
   const [services, setServices] = useState<Service[]>([]);
@@ -79,7 +69,7 @@ export const Services = () => {
   const pathname = usePathname();
   const currentLang = pathname.startsWith('/ge') || pathname.startsWith('/de') ? 'ge' : 'en';
 
-  const copy = sectionCopy[currentLang as keyof typeof sectionCopy] || sectionCopy.en;
+  const sectionCopy = copy[currentLang as 'en' | 'ge'].services;
 
   useEffect(() => {
     const fetchServicesData = async () => {
@@ -157,13 +147,13 @@ export const Services = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 bg-gold text-foreground text-xs sm:text-sm md:text-base font-semibold rounded-full mb-3 sm:mb-4">
-            {copy.badge}
+            {sectionCopy.badge}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-left">
-            {copy.heading}
+            {sectionCopy.heading}
           </h2>
           <p className="text-base sm:text-lg md:text-lg lg:text-xl text-muted-foreground max-w-3xl leading-relaxed px-2">
-            {copy.description}
+            {sectionCopy.subheading}
           </p>
         </motion.div>
 
@@ -179,7 +169,7 @@ export const Services = () => {
             return (
               <motion.div
                 key={service._id || service.order}
-                className="relative bg-card/50 backdrop-blur-sm border-2 border-border p-5 sm:p-6 md:p-7 lg:p-9 xl:p-10 rounded-xl sm:rounded-2xl hover:bg-card hover:border-gold/50 hover:shadow-[0_25px_80px_-20px_hsl(45_80%_55%/0.4)] transition-all duration-700 group overflow-hidden"
+                className="relative bg-card/50 backdrop-blur-sm border-2 border-border p-5 sm:p-6 md:p-7 lg:p-9 xl:p-10 rounded-xl sm:rounded-2xl hover:bg-card hover:border-gold/50 hover:shadow-gold-lg transition-all duration-700 group overflow-hidden"
                 variants={{
                   hidden: { opacity: 0, y: 60, scale: 0.9 },
                   visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] } },
@@ -189,7 +179,7 @@ export const Services = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-start gap-4 sm:gap-5 md:gap-5 lg:gap-6 relative z-10">
                   <motion.div
-                    className="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-lg sm:rounded-xl bg-gold text-foreground flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-[0_10px_30px_-10px_hsl(45_80%_55%/0.5)]"
+                    className="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-lg sm:rounded-xl bg-gold text-foreground flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-gold"
                     animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: index * 0.2 }}
                   >

@@ -1,3 +1,5 @@
+import { getCurrentTenant, getEffectiveTenantId } from "./tenant-config";
+
 export type SiteLocale = "en" | "ge";
 
 export interface SiteConfig {
@@ -13,27 +15,45 @@ export interface SiteConfig {
   };
   external: {
     whatsappNumber?: string;
+    contactEmail: string;
+  };
+  seo: {
+    googleAnalyticsId?: string;
+    googleSearchConsoleId?: string;
+  };
+  features: {
+    blog: boolean;
+    caseStudies: boolean;
+    testimonials: boolean;
+    pricing: boolean;
+    booking: boolean;
+    whatsapp: boolean;
   };
 }
 
-const rawTenantId = process.env.NEXT_PUBLIC_TENANT_ID || process.env.VITE_DATABASE || "socialmediaaccountmanagement";
-// Temporary override to force new tenant until .env.local is updated
-const resolvedTenantId = rawTenantId === 'socal_media_agency' ? 'socialmediaAccountmangement' : rawTenantId;
+/** Get tenant configuration from centralized tenant-config.ts */
+const tenant = getCurrentTenant();
 
 export const siteConfig: SiteConfig = {
-  brandName: "DON Call",
-  brandMarkText: "DC",
-  defaultLocale: "en",
-  apiBase: process.env.NEXT_PUBLIC_API_BASE || "https://api.don-va.com",
-  tenantId: resolvedTenantId,
+  brandName: tenant.brandName,
+  brandMarkText: tenant.brandMarkText,
+  defaultLocale: tenant.defaultLocale,
+  apiBase: tenant.apiBase,
+  tenantId: getEffectiveTenantId(),
   routes: {
     bookMeeting: "/book-meeting",
     contact: "/contact",
     blog: "/blog",
   },
   external: {
-    whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER,
+    whatsappNumber: tenant.whatsappNumber,
+    contactEmail: tenant.contactEmail,
   },
+  seo: {
+    googleAnalyticsId: tenant.googleAnalyticsId,
+    googleSearchConsoleId: tenant.googleSearchConsoleId,
+  },
+  features: tenant.features,
 };
 
 export const normalizeLocale = (locale: string): SiteLocale => {

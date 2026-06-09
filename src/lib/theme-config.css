@@ -1,36 +1,122 @@
-/* 
- * Theme Configuration CSS Variables
- * Current theme: blue
- * Change theme in src/lib/theme-config.ts
+/*
+ * ═══════════════════════════════════════════════════════════════
+ *  AUTO-GENERATED THEME CSS - DO NOT EDIT DIRECTLY
+ * ═══════════════════════════════════════════════════════════════
+ *  Generated from: src/lib/theme-config.ts
+ *  Current theme: teal
+ *  Run: npm run theme:generate
+ * ═══════════════════════════════════════════════════════════════
  */
 
+/* ── Light Mode (Default) ── */
 :root {
-  --background: 0 0% 100%;
-  --card: 0 0% 100%;
-  --foreground: 0 0% 0%;
-  --muted: 220 13% 97%;
-  --border: 220 13% 86%;
-  --primary: 220 100% 50%;
-  --primary-dark: 220 100% 40%;
-  --primary-light: 220 100% 60%;
-  --accent: 220 100% 50%;
-  --accent-dark: 220 85% 25%;
-  --accent-light: 220 100% 65%;
-  --destructive: 0 84.2% 60.2%;
-  --success: 142 76% 36%;
-  --warning: 45 93% 58%;
-  --brand-blue: 220 85% 25%;
-  --gold: 220 100% 50%;
-  --gold-dark: 220 100% 40%;
-  --gold-light: 220 100% 60%;
+  /* Core Colors */
+  --theme-background: 160 20% 97%;
+  --theme-foreground: 160 20% 10%;
+  --theme-card: 0 0% 100%;
+  --theme-card-foreground: 160 20% 10%;
+  --theme-popover: 0 0% 100%;
+  --theme-popover-foreground: 160 20% 10%;
+  
+  /* Primary */
+  --theme-primary: 158 64% 52%;
+  --theme-primary-foreground: 0 0% 100%;
+  --theme-primary-dark: 158 64% 42%;
+  --theme-primary-light: 158 64% 65%;
+  
+  /* Secondary / Muted */
+  --theme-secondary: 160 20% 95%;
+  --theme-secondary-foreground: 160 20% 10%;
+  --theme-muted: 160 20% 95%;
+  --theme-muted-foreground: 160 15% 40%;
+  
+  /* Accent */
+  --theme-accent: 174 72% 56%;
+  --theme-accent-foreground: 0 0% 100%;
+  --theme-accent-dark: 174 72% 40%;
+  --theme-accent-light: 174 72% 68%;
+  
+  /* UI */
+  --theme-border: 160 25% 88%;
+  --theme-input: 160 20% 92%;
+  --theme-ring: 158 64% 52%;
+  
+  /* Headings */
+  --theme-heading: 160 20% 10%;
+  --theme-subheading: 160 15% 40%;
+  
+  /* CTA */
+  --theme-cta: 24 100% 50%;
+  --theme-cta-foreground: 0 0% 100%;
+  
+  /* Status */
+  --theme-destructive: 0 84.2% 60.2%;
+  --theme-destructive-foreground: 0 0% 98%;
+  --theme-success: 158 64% 52%;
+  --theme-warning: 48 100% 50%;
+  
+  /* Aliases */
+  --theme-brand-blue: 174 72% 40%;
+  --theme-gold: 158 64% 52%;
+  --theme-gold-dark: 158 64% 42%;
+  --theme-gold-light: 158 64% 65%;
+  --theme-call-orange: 24 100% 50%;
+  --theme-call-yellow: 48 100% 50%;
+  --theme-call-green: 158 64% 52%;
   
   /* Gradients */
-  --gradient-gold: linear-gradient(135deg, hsl(220 100% 50%) 0%, hsl(220 85% 25%) 100%);
-  --gradient-dark: linear-gradient(180deg, hsl(220 85% 25%) 15%, hsl(220 85% 25%) 20% 100%);
+  --theme-gradient-gold: linear-gradient(135deg, hsl(158 64% 52%) 0%, hsl(174 72% 40%) 100%);
+  --theme-gradient-dark: linear-gradient(180deg, hsl(174 72% 40%) 0%, hsl(174 72% 40%) 100%);
+  --theme-gradient-light: linear-gradient(180deg, hsl(160 20% 97%) 0%, hsl(160 20% 95%) 100%);
   
   /* Shadows */
-  --shadow-gold: 0 10px 40px -10px hsl(220 100% 50%) / 0.3;
-  --shadow-gold-lg: 0 25px 80px -20px hsl(220 100% 50%) / 0.4;
-  --shadow-elegant: 0 20px 60px -15px hsl(220 85% 25%) / 0.3;
-  --shadow-brutal: 8px 8px 0px hsl(220 100% 50%);
+  --theme-shadow-gold: 0 10px 40px -10px hsl(158 64% 52% / 0.15);
+  --theme-shadow-gold-lg: 0 25px 80px -20px hsl(158 64% 52% / 0.25);
+  --theme-shadow-elegant: 0 20px 60px -15px hsl(174 72% 40% / 0.12);
+  --theme-shadow-card: 0 2px 8px -2px hsl(174 72% 40% / 0.08);
+  --theme-shadow-brutal: 8px 8px 0px hsl(158 64% 52%);
+  
+  /* Sidebar */
+  --theme-sidebar-background: 160 20% 97%;
+  --theme-sidebar-foreground: 160 20% 10%;
+  --theme-sidebar-primary: 158 64% 52%;
+  --theme-sidebar-primary-foreground: 0 0% 100%;
+  --theme-sidebar-accent: 160 20% 95%;
+  --theme-sidebar-accent-foreground: 160 20% 10%;
+  --theme-sidebar-border: 160 25% 88%;
+  --theme-sidebar-ring: 158 64% 52%;
+}
+
+/* ── Dark Mode ── */
+.dark {
+  --theme-background: 0 0% 12%;
+  --theme-foreground: 0 0% 95%;
+  --theme-card: 0 0% 15%;
+  --theme-card-foreground: 0 0% 95%;
+  --theme-popover: 0 0% 15%;
+  --theme-popover-foreground: 0 0% 95%;
+  --theme-muted: 0 0% 20%;
+  --theme-muted-foreground: 0 0% 65%;
+  --theme-border: 160 20% 25%;
+  --theme-input: 160 20% 25%;
+  --theme-accent: 158 64% 52%;
+  --theme-accent-foreground: 0 0% 100%;
+  --theme-ring: 158 64% 52%;
+  --theme-heading: 0 0% 95%;
+  --theme-subheading: 0 0% 65%;
+  --theme-brand-blue: 174 72% 40%;
+  --theme-gold: 158 64% 52%;
+  --theme-call-orange: 24 100% 50%;
+  --theme-call-yellow: 48 100% 50%;
+  --theme-call-green: 158 64% 52%;
+  --theme-gradient-dark: linear-gradient(180deg, hsl(0 0% 12%) 0%, hsl(0 0% 20%) 100%);
+  --theme-shadow-elegant: 0 20px 60px -15px hsl(0 0% 12% / 0.4);
+  --theme-sidebar-background: 0 0% 12%;
+  --theme-sidebar-foreground: 0 0% 95%;
+  --theme-sidebar-primary: 158 64% 52%;
+  --theme-sidebar-primary-foreground: 0 0% 95%;
+  --theme-sidebar-accent: 158 64% 52%;
+  --theme-sidebar-accent-foreground: 0 0% 95%;
+  --theme-sidebar-border: 160 20% 25%;
+  --theme-sidebar-ring: 158 64% 52%;
 }

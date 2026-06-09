@@ -4,18 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { fetchApiData, API_ENDPOINTS, normalizeLanguage } from "@/lib/api";
 import { SITE_URL, absoluteUrl, hreflangAlternates, publicLocalePathSegment } from "@/lib/site-url";
-import { fetchFAQData } from "@/lib/data-fetching";
-import dynamic from "next/dynamic";
-
-// Dynamically import below-fold components to reduce initial bundle
-const HomeBelowFold = dynamic(() => import("@/components/HomeBelowFold.hybrid").then(mod => ({ default: mod.HomeBelowFold })), {
-  loading: () => (
-    <div className="min-h-[600px] bg-background flex items-center justify-center">
-      <div className="w-8 h-8 border-2 border-gold/20 border-t-gold rounded-full animate-spin" />
-    </div>
-  ),
-  ssr: true,
-});
+import { HomeBelowFold } from "@/components/HomeBelowFold.hybrid";
 
 export const revalidate = 3600;
 
@@ -210,11 +199,11 @@ export default async function HomeLangPage({
   }
 
   const lang = rawLang === 'de' || rawLang === 'ge' ? 'ge' : 'en';
-  const [serviceLd, faqData] = await Promise.all([
+  const [serviceLd, rawFaqData] = await Promise.all([
     Promise.resolve(serviceJsonLd(SITE_URL, lang)),
-    fetchFAQData(lang).catch(() => []),
+    fetchApiData<{ faqs: { question: string; answer: string }[] }>(API_ENDPOINTS.FAQ, normalizeLanguage(lang)).catch(() => null),
   ]);
-  const faqLd = faqData.length > 0 ? faqPageJsonLd(faqData) : null;
+  const faqLd = rawFaqData?.faqs?.length ? faqPageJsonLd(rawFaqData.faqs) : null;
   const priceLd = pricingJsonLd(lang);
 
   const schemas: any[] = [serviceLd, priceLd];
