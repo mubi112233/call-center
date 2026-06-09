@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { fetchApiData, API_ENDPOINTS, normalizeLanguage } from "@/lib/api";
 import BlogPostClient from "./BlogPostClient";
@@ -76,26 +75,6 @@ export default async function BlogPostPage({
 }) {
   const { lang: rawLang, slug } = await params;
   const lang = rawLang === "de" || rawLang === "ge" ? "ge" : "en";
-  const post = await getBlogPost(lang, slug);
 
-  if (!post) notFound();
-
-  const structuredData = generateBlogStructuredData({
-    title: post.title,
-    description: post.excerpt,
-    publishedAt: post.date,
-    updatedAt: post.date,
-    image: post.image,
-    url: absoluteUrl(`/${publicLocalePathSegment(rawLang)}/blog/${slug}`),
-  });
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-      <BlogPostClient post={post} lang={lang} />
-    </>
-  );
+  return <BlogPostClient slug={slug} lang={lang} />;
 }

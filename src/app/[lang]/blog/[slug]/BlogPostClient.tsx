@@ -1,14 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, Share2, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getCopy } from "@/lib/copy";
 import { SPACING } from "@/lib/constants";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { localizedPath, siteConfig, type SiteLocale } from "@/lib/site-config";
+import { fetchApiDataClient, API_ENDPOINTS, normalizeLanguage } from "@/lib/api";
+import { notFound } from "next/navigation";
 
 interface BlogPost {
   blogId: number;
@@ -23,18 +25,33 @@ interface BlogPost {
 }
 
 export default function BlogPostClient({
-  post,
+  slug,
   lang,
 }: {
-  post: BlogPost;
+  slug: string;
   lang: string;
 }) {
   const router = useRouter();
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
   const copy = getCopy(lang, "blog");
   const isGe = lang === "ge";
 
+  useEffect(() => {
+    const postId = Number(slug.split("-").pop());
+    if (isNaN(postId)) { setLoading(false); return; }
+
+    fetchApiDataClient<any>(API_ENDPOINTS.BLOGS, normalizeLanguage(lang))
+      .then((data) => {
+        const posts: BlogPost[] = Array.isArray(data?.posts) ? data.posts : Array.isArray(data?.blogs) ? data.blogs : [];
+        setPost(posts.find((p) => p.blogId === postId) ?? null);
+      })
+      .finally(() => setLoading(false));
+  }, [lang, slug]);
+
   const handleShare = async () => {
+    if (!post) return;
     const shareData = {
       title: post.title,
       text: post.excerpt,
@@ -56,6 +73,16 @@ export default function BlogPostClient({
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  if (loading) {
+    return (
+      <div className={`min-h-screen ${SPACING.sideMargin} bg-background flex items-center justify-center`}>
+        <Loader2 className="w-8 h-8 animate-spin text-gold" />
+      </div>
+    );
+  }
+
+  if (!post) return notFound();
 
   return (
     <div className={`min-h-screen ${SPACING.sideMargin} bg-background`}>
