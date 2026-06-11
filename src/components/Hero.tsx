@@ -48,6 +48,9 @@ export const Hero = () => {
 
   const isGe = currentLang === "ge";
 
+  const normalizeBrandCopy = (value: string | undefined, fallback: string) =>
+    (value || fallback).replace(/DON\s*VA/gi, "DON-CALL").replace(/ProCall/gi, "DON-CALL");
+
   const fallbackData: HeroData = useMemo(() => isGe
     ? {
         title: "Skalieren Sie mit einem deutschsprachigen Call Center für DACH",
@@ -111,9 +114,9 @@ export const Hero = () => {
     };
   }, [currentLang, fallbackData]);
 
-  const title = heroData?.title || fallbackData.title;
-  const subtitle = heroData?.subtitle || fallbackData.subtitle;
-  const tagline = heroData?.tagline || fallbackData.tagline;
+  const title = normalizeBrandCopy(heroData?.title, fallbackData.title);
+  const subtitle = normalizeBrandCopy(heroData?.subtitle, fallbackData.subtitle);
+  const tagline = normalizeBrandCopy(heroData?.tagline, fallbackData.tagline);
   const heroImage = heroData?.image || fallbackData.image;
   const ctaPrimary = heroData?.ctaPrimary || fallbackData.ctaPrimary;
   const urgency = heroData?.urgency || fallbackData.urgency;
@@ -211,7 +214,7 @@ export const Hero = () => {
                   );
                 }}
                 className="group relative w-full sm:w-auto text-sm sm:text-base md:text-lg px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 h-auto font-bold shadow-gold-lg transform hover:scale-[1.06] hover:-translate-y-2 transition-all duration-300 hover:brightness-110 cursor-pointer overflow-hidden rounded-xl border-2 border-transparent hover:border-warning/30 text-foreground"
-                aria-label="Get started with Don VA virtual assistant services"
+                aria-label="Get started with DON-CALL call center services"
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent"

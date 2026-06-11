@@ -21,14 +21,14 @@ const fallbackCopy = {
   en: {
     badge: "Ready to Scale?",
     headlineLine1: "Start with",
-    headlineLine2: "DON VA Today",
+    headlineLine2: "DON-CALL Today",
     subheading:
       "Book a free consultation and see how we can transform your operations in 48 hours.",
-    benefits: ["No setup fees", "14-day trial", "Native managers", "24/7 support"],
-    stats: { activeClients: "200+", avgRoi: "3.5x", satisfaction: "98%", fastStart: "48h" },
+    benefits: ["14-day trial", "Native managers", "24/7 support", "Flexible scaling"],
+    stats: { activeClients: "200+", avgRoi: "Service KPI", satisfaction: "98%", fastStart: "48h" },
     statsLabels: {
       activeClients: "Active Clients",
-      avgRoi: "Avg. ROI",
+      avgRoi: "Quality Goal",
       satisfaction: "Satisfaction",
       fastStart: "Fast Start",
     },
@@ -47,14 +47,14 @@ const fallbackCopy = {
   ge: {
     badge: "Bereit zu skalieren?",
     headlineLine1: "Starten Sie noch heute",
-    headlineLine2: "mit DON VA",
+    headlineLine2: "mit DON-CALL",
     subheading:
       "Buchen Sie eine kostenlose Beratung und erleben Sie, wie wir Ihre Abläufe in 48 Stunden transformieren.",
-    benefits: ["Keine Einrichtungsgebühren", "14-Tage-Test", "Native Manager", "24/7 Support"],
-    stats: { activeClients: "200+", avgRoi: "3.5x", satisfaction: "98%", fastStart: "48h" },
+    benefits: ["14-Tage-Test", "Native Manager", "24/7 Support", "Flexible Skalierung"],
+    stats: { activeClients: "200+", avgRoi: "Service-KPI", satisfaction: "98%", fastStart: "48h" },
     statsLabels: {
       activeClients: "Aktive Kunden",
-      avgRoi: "Ø ROI",
+      avgRoi: "Qualitätsziel",
       satisfaction: "Zufriedenheit",
       fastStart: "Schnellstart",
     },
@@ -93,9 +93,11 @@ function mergeFinalCta(
   return {
     badge: api?.badge ?? fb.badge,
     headlineLine1: api?.headlineLine1 ?? fb.headlineLine1,
-    headlineLine2: api?.headlineLine2 ?? fb.headlineLine2,
+    headlineLine2: (api?.headlineLine2 ?? fb.headlineLine2).replace(/DON\s*VA/gi, "DON-CALL"),
     subheading: api?.subheading ?? fb.subheading,
-    benefits: api?.benefits?.length ? api.benefits : fb.benefits,
+    benefits: (api?.benefits?.length ? api.benefits : fb.benefits)
+      .map((benefit) => benefit.replace(/DON\s*VA/gi, "DON-CALL"))
+      .filter((benefit) => !/setup|einrichtungs/i.test(benefit)),
     stats: { ...fb.stats, ...api?.stats },
     trust: { ...fb.trust, ...api?.trust },
     primaryCta: api?.ctas?.primaryLabel ?? fb.primaryCta,
@@ -105,7 +107,8 @@ function mergeFinalCta(
     secondaryCta: api?.ctas?.secondaryLabel ?? fb.secondaryCta,
     secondaryHref: api?.ctas?.secondaryHref
       ? withLocalePrefix(api.ctas.secondaryHref, locale)
-      : getWhatsAppUrl(api?.whatsAppNumber || siteConfig.external.whatsappNumber) ?? "#",
+      : getWhatsAppUrl(api?.whatsAppNumber || siteConfig.external.whatsappNumber) ??
+        localizedPath(locale, siteConfig.routes.contact),
     statsLabels: fb.statsLabels,
   };
 }

@@ -20,7 +20,7 @@ const cards = {
     {
       icon: Clock,
       title: "24h Replacement Guarantee",
-      description: "If something isn't the right fit, we'll replace your VA within 24 hours.",
+      description: "If something isn't the right fit, we'll replace your agent within 24 hours.",
     },
     {
       icon: Lock,
@@ -42,7 +42,7 @@ const cards = {
     {
       icon: Clock,
       title: "24h Ersatzgarantie",
-      description: "Wenn etwas nicht passt, ersetzen wir Ihren VA innerhalb von 24 Stunden.",
+      description: "Wenn etwas nicht passt, ersetzen wir Ihren Agent innerhalb von 24 Stunden.",
     },
     {
       icon: Lock,

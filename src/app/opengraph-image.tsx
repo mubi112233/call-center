@@ -25,18 +25,18 @@ export default function OgImage() {
           <div style={{ width: 56, height: 56, background: "#d4a017", borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <span style={{ color: "#000", fontWeight: 900, fontSize: 28 }}>D</span>
           </div>
-          <span style={{ color: "#fff", fontWeight: 800, fontSize: 32 }}>Don Va</span>
+          <span style={{ color: "#fff", fontWeight: 800, fontSize: 32 }}>DON-CALL</span>
         </div>
 
         {/* Headline */}
         <h1 style={{ color: "#fff", fontSize: 64, fontWeight: 800, lineHeight: 1.1, margin: "0 0 24px 0", maxWidth: 800 }}>
-          Virtual Assistants{" "}
-          <span style={{ color: "#d4a017" }}>80% Cheaper</span>
+          Call Center Support{" "}
+          <span style={{ color: "#d4a017" }}>for DACH</span>
         </h1>
 
         {/* Subtitle */}
         <p style={{ color: "#999", fontSize: 28, margin: "0 0 48px 0", maxWidth: 700 }}>
-          Pre-vetted, German-speaking VAs. Scale your team in days, not months.
+          German-speaking agents for inbound and outbound customer communication.
         </p>
 
         {/* Stats */}
@@ -51,7 +51,7 @@ export default function OgImage() {
 
         {/* Domain */}
         <div style={{ position: "absolute", bottom: 60, right: 80, color: "#555", fontSize: 22 }}>
-          don-va.com
+          don-call.com
         </div>
       </div>
     ),

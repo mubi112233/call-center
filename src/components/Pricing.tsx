@@ -9,7 +9,7 @@ import { getCopy } from "@/lib/copy";
 import { siteConfig, localizedPath } from "@/lib/site-config";
 
 // Constants
-const MAX_VA_COUNT = 10;
+const MAX_AGENT_COUNT = 10;
 const BULK_DISCOUNT_THRESHOLD = 3;
 const BULK_DISCOUNT_RATE = 0.03;
 
@@ -33,7 +33,7 @@ const plans: PricingPlan[] = [
     price: 369,
     setupFee: 149,
     features: [
-      "Dedicated VA",
+      "Dedicated call center agent",
       "Native Quality Control", 
       "24h Replacement Guarantee",
       "Slack/Email Support",
@@ -77,7 +77,7 @@ const plans: PricingPlan[] = [
 ];
 
 export const Pricing = () => {
-  const [vaCount, setVaCount] = useState(1);
+  const [agentCount, setAgentCount] = useState(1);
   
   const getLangFromPath = () => {
     const match = window.location.pathname.match(/^\/(en|ge|de)\b/i);
@@ -97,13 +97,13 @@ export const Pricing = () => {
     return count >= BULK_DISCOUNT_THRESHOLD ? BULK_DISCOUNT_RATE : 0;
   };
   
-  const discount = calculateDiscount(vaCount);
-  const totalPrice = plans.reduce((sum, plan) => sum + plan.price, 0) * vaCount;
+  const discount = calculateDiscount(agentCount);
+  const totalPrice = plans.reduce((sum, plan) => sum + plan.price, 0) * agentCount;
   const savings = discount > 0 ? Math.round(totalPrice * discount) : 0;
   
-  // Calculate average price per VA per hour
+  // Calculate starter price per agent per hour
   const avgHoursPerWeek = 20; // Professional plan baseline
-  const avgPricePerVA = plans[1].price; // Professional plan price
+  const avgPricePerAgent = plans[0].price;
 
   return (
     <motion.section 
@@ -239,7 +239,7 @@ export const Pricing = () => {
           </p>
         </motion.div>
 
-        {/* VA Count Selector */}
+        {/* Agent Count Selector */}
         <motion.div 
           className="max-w-xl mx-auto mb-8 sm:mb-10 md:mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -264,22 +264,22 @@ export const Pricing = () => {
             <div className="absolute inset-0 rounded-lg sm:rounded-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none blur-xl bg-gold/20" />
             
             <select 
-              value={vaCount}
-              onChange={(e) => setVaCount(Number(e.target.value))}
+              value={agentCount}
+              onChange={(e) => setAgentCount(Number(e.target.value))}
               className="relative w-full p-3 sm:p-4 md:p-5 bg-card/90 backdrop-blur-sm border-2 border-border/50 hover:border-gold/70 focus:border-gold rounded-lg sm:rounded-xl text-center font-bold text-lg sm:text-xl lg:text-2xl focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all duration-300 text-foreground appearance-none cursor-pointer shadow-md hover:shadow-lg hover:shadow-gold/10 active:scale-[0.98]"
               style={{
                 backgroundImage: 'none'
               }}
-              aria-label="Select number of virtual assistants"
-              aria-describedby="va-count-description"
+              aria-label="Select number of call center agents"
+              aria-describedby="agent-count-description"
             >
-              {Array.from({ length: MAX_VA_COUNT }, (_, i) => i + 1).map(num => (
+              {Array.from({ length: MAX_AGENT_COUNT }, (_, i) => i + 1).map(num => (
                 <option 
                   key={num} 
                   value={num} 
                   className="text-foreground bg-card py-2 sm:py-3"
                 >
-                  {num} VA{num > 1 ? 's' : ''}
+                  {num} Agent{num > 1 ? 's' : ''}
                 </option>
               ))}
             </select>
@@ -302,7 +302,7 @@ export const Pricing = () => {
             </div>
           </div>
 
-          {/* Price per VA indicator */}
+          {/* Price per agent indicator */}
           <motion.div 
             className="mt-4 sm:mt-5 text-center"
             initial={{ opacity: 0, y: 10 }}
@@ -310,7 +310,7 @@ export const Pricing = () => {
             transition={{ delay: 0.2 }}
           >
             <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-gold/10 text-foreground text-xs sm:text-sm font-semibold rounded-full border border-gold/30 shadow-sm">
-              {copy.startingFrom.replace('{price}', avgPricePerVA.toString()).replace('{hourly}', Math.round(avgPricePerVA / (avgHoursPerWeek * 4)).toString())}
+              {copy.startingFrom.replace('{price}', avgPricePerAgent.toString()).replace('{hourly}', Math.round(avgPricePerAgent / (avgHoursPerWeek * 4)).toString())}
             </span>
           </motion.div>
 
@@ -329,7 +329,7 @@ export const Pricing = () => {
               </p>
             </motion.div>
           )}
-          {vaCount >= 2 && vaCount < BULK_DISCOUNT_THRESHOLD && (
+          {agentCount >= 2 && agentCount < BULK_DISCOUNT_THRESHOLD && (
             <motion.div 
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -339,7 +339,7 @@ export const Pricing = () => {
               <p className="text-muted-foreground text-xs sm:text-sm flex items-center justify-center gap-1.5 flex-wrap">
                 <span>💡</span>
                 <span>
-                  {copy.bulkHint.replace('{count}', (BULK_DISCOUNT_THRESHOLD - vaCount).toString()).replace('{suffix}', BULK_DISCOUNT_THRESHOLD - vaCount > 1 ? 's' : '').replace('{percent}', Math.round(BULK_DISCOUNT_RATE * 100).toString())}
+                  {copy.bulkHint.replace('{count}', (BULK_DISCOUNT_THRESHOLD - agentCount).toString()).replace('{suffix}', BULK_DISCOUNT_THRESHOLD - agentCount > 1 ? 's' : '').replace('{percent}', Math.round(BULK_DISCOUNT_RATE * 100).toString())}
                 </span>
               </p>
             </motion.div>
@@ -444,7 +444,7 @@ export const Pricing = () => {
                       whileInView={{ scale: 1, opacity: 1 }}
                       transition={{ type: "spring", duration: 0.8, delay: 0.4 }}
                     >
-                      €{Math.round(plan.price * (1 - discount) * vaCount)}
+                      €{Math.round(plan.price * (1 - discount) * agentCount)}
                     </motion.span>
                     <span className={`text-base ml-1 ${
                       plan.highlighted ? 'text-foreground/60' : 'text-muted-foreground'
@@ -504,7 +504,7 @@ export const Pricing = () => {
                       ? 'bg-foreground text-gold hover:bg-foreground/95 shadow-lg hover:shadow-xl hover:scale-105' 
                       : 'border-2 border-gold text-gold hover:bg-gold hover:text-foreground hover:scale-105'
                   }`}
-                  aria-label={`Get started with ${localizedName} plan - ${localizedHours} at €${Math.round(plan.price * (1 - discount) * vaCount)} ${copy.perMonth}`}
+                  aria-label={`Get started with ${localizedName} plan - ${localizedHours} at €${Math.round(plan.price * (1 - discount) * agentCount)} ${copy.perMonth}`}
                 >
                   {/* Button shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover/btn:translate-x-[200%] transition-transform duration-700" aria-hidden="true" />

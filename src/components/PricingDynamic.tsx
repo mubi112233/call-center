@@ -10,13 +10,13 @@ import { SPACING } from "@/lib/constants";
 import { usePathname } from "next/navigation";
 
 // Constants
-const MAX_VA_COUNT = 10;
+const MAX_AGENT_COUNT = 10;
 const BULK_DISCOUNT_THRESHOLD = 3;
 const BULK_DISCOUNT_RATE = 0.03;
 
 export const PricingDynamic = ({ lang }: { lang: string }) => {
   const router = useRouter();
-  const [vaCount, setVaCount] = useState<number>(1);
+  const [agentCount, setAgentCount] = useState<number>(1);
   const [plans, setPlans] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -41,8 +41,8 @@ export const PricingDynamic = ({ lang }: { lang: string }) => {
     if (key === "pricing.sectionBadge") return "Pricing";
     if (key === "pricing.sectionTitle") return "Simple, transparent pricing";
     if (key === "pricing.sectionDescription") return "Choose the plan that fits your business.";
-    if (key === "pricing.vaCountLabel") return "How many VAs do you need?";
-    if (key === "pricing.vaCountHelper") return "Select the number of virtual assistants.";
+    if (key === "pricing.vaCountLabel") return "How many agents do you need?";
+    if (key === "pricing.vaCountHelper") return "Select the number of call center agents.";
     if (key === "pricing.perMonth") return "/mo";
     if (key === "pricing.hoursUnit") return "hours";
     if (key === "pricing.cta") return "Get Started";
@@ -66,7 +66,7 @@ export const PricingDynamic = ({ lang }: { lang: string }) => {
       const count = options?.count ?? "";
       const suffix = options?.suffix ?? "";
       const percent = options?.percent ?? "";
-      return `Add ${count} more VA${suffix} to unlock ${percent}% discount`;
+      return `Add ${count} more agent${suffix} to unlock ${percent}% discount`;
     }
     if (key === "pricing.planSetupFee") {
       const fee = options?.fee ?? "";
@@ -111,10 +111,10 @@ export const PricingDynamic = ({ lang }: { lang: string }) => {
     fetchPricingData();
   }, [currentLang]);
 
-  const discount = vaCount >= BULK_DISCOUNT_THRESHOLD ? BULK_DISCOUNT_RATE : 0;
-  const totalSavings = Math.round(plans.reduce((sum, p) => sum + p.price, 0) * vaCount * discount);
-  const professionalPlan = plans.find(p => p.planKey === 'professional') || plans[0];
-  const avgPricePerVA = professionalPlan?.price || 0;
+  const discount = agentCount >= BULK_DISCOUNT_THRESHOLD ? BULK_DISCOUNT_RATE : 0;
+  const totalSavings = Math.round(plans.reduce((sum, p) => sum + p.price, 0) * agentCount * discount);
+  const starterPlan = plans.find(p => p.planKey === 'starter') || plans[0];
+  const avgPricePerAgent = starterPlan?.price || 0;
   const avgHoursPerWeek = 20;
 
   // Loading
@@ -288,7 +288,7 @@ export const PricingDynamic = ({ lang }: { lang: string }) => {
           </p>
         </motion.div>
 
-        {/* VA Count Selector */}
+        {/* Agent Count Selector */}
         <motion.div
           className="max-w-xl mx-auto mb-8 sm:mb-10 md:mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -309,15 +309,15 @@ export const PricingDynamic = ({ lang }: { lang: string }) => {
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg sm:rounded-xl pointer-events-none" />
             <div className="absolute inset-0 rounded-lg sm:rounded-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none blur-xl bg-gold/20" />
             <select
-              value={vaCount}
-              onChange={(e) => setVaCount(Number(e.target.value))}
+              value={agentCount}
+              onChange={(e) => setAgentCount(Number(e.target.value))}
               className="relative w-full p-3 sm:p-4 md:p-5 bg-card/90 backdrop-blur-sm border-2 border-border/50 hover:border-gold/70 focus:border-gold rounded-lg sm:rounded-xl text-center font-bold text-lg sm:text-xl lg:text-2xl focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all duration-300 text-foreground appearance-none cursor-pointer shadow-md hover:shadow-lg hover:shadow-gold/10 active:scale-[0.98]"
               style={{ backgroundImage: 'none' }}
-              aria-label="Select number of virtual assistants"
+              aria-label="Select number of call center agents"
             >
-              {Array.from({ length: MAX_VA_COUNT }, (_, i) => i + 1).map(num => (
+              {Array.from({ length: MAX_AGENT_COUNT }, (_, i) => i + 1).map(num => (
                 <option key={num} value={num} className="text-foreground bg-card py-2 sm:py-3">
-                  {num} VA{num > 1 ? 's' : ''}
+                  {num} Agent{num > 1 ? 's' : ''}
                 </option>
               ))}
             </select>
@@ -329,7 +329,7 @@ export const PricingDynamic = ({ lang }: { lang: string }) => {
           </div>
 
           {/* Starting from pill */}
-          {avgPricePerVA > 0 && (
+          {avgPricePerAgent > 0 && (
             <motion.div
               className="mt-4 sm:mt-5 text-center"
               initial={{ opacity: 0, y: 10 }}
@@ -338,8 +338,8 @@ export const PricingDynamic = ({ lang }: { lang: string }) => {
             >
               <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-gold/10 text-foreground text-xs sm:text-sm font-semibold rounded-full border border-gold/30 shadow-sm">
                 {t("pricing.startingFrom", {
-                  price: avgPricePerVA,
-                  hourly: Math.round(avgPricePerVA / (avgHoursPerWeek * 4)),
+                  price: avgPricePerAgent,
+                  hourly: Math.round(avgPricePerAgent / (avgHoursPerWeek * 4)),
                 })}
               </span>
             </motion.div>
@@ -367,7 +367,7 @@ export const PricingDynamic = ({ lang }: { lang: string }) => {
           )}
 
           {/* Hint to unlock bulk discount */}
-          {vaCount >= 2 && vaCount < BULK_DISCOUNT_THRESHOLD && (
+          {agentCount >= 2 && agentCount < BULK_DISCOUNT_THRESHOLD && (
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -378,8 +378,8 @@ export const PricingDynamic = ({ lang }: { lang: string }) => {
                 <span>💡</span>
                 <span>
                   {t("pricing.bulkHint", {
-                    count: BULK_DISCOUNT_THRESHOLD - vaCount,
-                    suffix: BULK_DISCOUNT_THRESHOLD - vaCount > 1 ? 's' : '',
+                    count: BULK_DISCOUNT_THRESHOLD - agentCount,
+                    suffix: BULK_DISCOUNT_THRESHOLD - agentCount > 1 ? 's' : '',
                     percent: Math.round(BULK_DISCOUNT_RATE * 100),
                   })}
                 </span>
@@ -489,7 +489,7 @@ export const PricingDynamic = ({ lang }: { lang: string }) => {
                         whileInView={{ scale: 1, opacity: 1 }}
                         transition={{ type: "spring", duration: 0.8, delay: 0.4 }}
                       >
-                        €{Math.round(plan.price * (1 - discount) * vaCount)}
+                        €{Math.round(plan.price * (1 - discount) * agentCount)}
                       </motion.span>
                       <span className={`text-base ml-1 ${plan.highlighted ? 'text-foreground/60' : 'text-muted-foreground'}`}>
                         {t('pricing.perMonth', { defaultValue: '/mo' })}

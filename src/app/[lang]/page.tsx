@@ -19,6 +19,9 @@ async function getHeroMeta(lang: string) {
   }
 }
 
+const normalizeBrandMeta = (value: string) =>
+  value.replace(/DON\s*VA/gi, "DON-CALL").replace(/ProCall/gi, "DON-CALL");
+
 export async function generateMetadata({
   params,
 }: {
@@ -29,12 +32,12 @@ export async function generateMetadata({
   const hero = await getHeroMeta(lang);
 
   const title =
-    hero?.metaTitle ||
+    (hero?.metaTitle && normalizeBrandMeta(hero.metaTitle)) ||
     (lang === "ge"
       ? "Call Center DACH | Inbound & Outbound Support"
       : "Call Center DACH | Inbound & Outbound Support");
   const description =
-    hero?.metaDescription ||
+    (hero?.metaDescription && normalizeBrandMeta(hero.metaDescription)) ||
     (lang === "ge"
       ? "Professioneller Call-Center-Service für DACH-Unternehmen. Skalieren Sie mit deutschsprachigen Agents für Inbound & Outbound. Jetzt starten."
       : "Professional call center services for DACH businesses. Scale your team with German-speaking agents for inbound & outbound support.");
@@ -81,7 +84,7 @@ export async function generateMetadata({
       description,
       url: canonical,
       type: "website",
-      siteName: "Call Center",
+      siteName: "DON-CALL",
       locale: lang === "ge" ? "de_DE" : "en_US",
       alternateLocale: lang === "ge" ? "en_US" : "de_DE",
       images: [
@@ -115,7 +118,7 @@ const serviceJsonLd = (baseUrl: string, lang: string) => ({
   "@context": "https://schema.org",
   "@type": "Service",
   name: lang === "ge" ? "Call Center Inbound- & Outbound-Support" : "Call Center Inbound & Outbound Support Services",
-  provider: { "@type": "Organization", name: "Call Center" },
+  provider: { "@type": "Organization", name: "DON-CALL" },
   description:
     lang === "ge"
       ? "Professioneller Call-Center-Service für DACH-Unternehmen. Skalieren Sie mit deutschsprachigen Agents für Inbound & Outbound."
@@ -151,7 +154,7 @@ const pricingJsonLd = (lang: string) => ({
     lang === "ge"
       ? "Flexible Call-Center-Agent-Pakete für DACH-Unternehmen. Wählen Sie zwischen Starter, Professional und Enterprise."
       : "Flexible call center agent packages for DACH businesses. Choose Starter, Professional, or Enterprise.",
-  brand: { "@type": "Organization", name: "Call Center" },
+  brand: { "@type": "Organization", name: "DON-CALL" },
   offers: [
     {
       "@type": "Offer",

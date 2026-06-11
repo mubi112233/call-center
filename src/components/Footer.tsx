@@ -22,9 +22,9 @@ export const Footer: React.FC = () => {
       ],
       serviceLinks: [
         { label: "Social Media Management", href: "/en/#services" },
-        { label: "Customer Support VAs", href: "/en/#services" },
-        { label: "Back-Office & Admin", href: "/en/#services" },
-        { label: "SEO & Content", href: "/en/#services" },
+        { label: "Inbound Support", href: "/en/#services" },
+        { label: "Outbound Calling", href: "/en/#services" },
+        { label: "Back-Office Follow-up", href: "/en/#services" },
         { label: "Pricing Plans", href: "/en/#pricing" },
       ],
       resourceLinks: [
@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
         { label: "FAQ", href: "/en/#faq" },
         { label: "Testimonials", href: "/en/#testimonials" },
       ],
-      tagline: "Pre-vetted, German-speaking virtual assistants for 80% less than local hires.",
+      tagline: "German-speaking call center agents for inbound and outbound support across DACH.",
       rights: "All rights reserved.",
     },
     ge: {
@@ -48,9 +48,9 @@ export const Footer: React.FC = () => {
       ],
       serviceLinks: [
         { label: "Social Media Management", href: "/de/#services" },
-        { label: "Kundensupport VAs", href: "/de/#services" },
-        { label: "Back-Office & Admin", href: "/de/#services" },
-        { label: "SEO & Content", href: "/de/#services" },
+        { label: "Inbound-Support", href: "/de/#services" },
+        { label: "Outbound-Telefonie", href: "/de/#services" },
+        { label: "Back-Office-Follow-up", href: "/de/#services" },
         { label: "Preispläne", href: "/de/#pricing" },
       ],
       resourceLinks: [
@@ -60,7 +60,7 @@ export const Footer: React.FC = () => {
         { label: "FAQ", href: "/de/#faq" },
         { label: "Testimonials", href: "/de/#testimonials" },
       ],
-      tagline: "Geprüfte, deutschsprachige virtuelle Assistenten für 80% weniger als lokale Einstellungen.",
+      tagline: "Deutschsprachige Call-Center-Agents für Inbound- und Outbound-Support in der DACH-Region.",
       rights: "Alle Rechte vorbehalten.",
     },
   };
@@ -134,7 +134,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom bar */}
         <div className="mt-10 pt-6 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} Don Va. {c.rights}</p>
+          <p>© {new Date().getFullYear()} {siteConfig.brandName}. {c.rights}</p>
           <div className="flex items-center gap-4">
             <Link href={localizedPath(lang, siteConfig.routes.blog)} className="hover:text-gold transition-colors">Blog</Link>
             <Link href={localizedPath(lang, siteConfig.routes.contact)} className="hover:text-gold transition-colors">{isGe ? "Kontakt" : "Contact"}</Link>

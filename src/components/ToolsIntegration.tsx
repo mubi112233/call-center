@@ -72,8 +72,8 @@ export const ToolsIntegration = () => {
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl">
             {isGe
-              ? "Unsere VAs sind in den meisten gängigen Business-Tools geschult und passen sich Ihrem Workflow an."
-              : "Our VAs are trained in most popular business tools and adapt to your existing workflow seamlessly."}
+              ? "Unsere Agents sind in den meisten gängigen Business-Tools geschult und passen sich Ihrem Workflow an."
+              : "Our agents are trained in popular business tools and adapt to your existing workflow seamlessly."}
           </p>
         </motion.div>
 
@@ -121,8 +121,8 @@ export const ToolsIntegration = () => {
             </p>
             <p className="text-sm sm:text-base text-muted-foreground">
               {isGe
-                ? "Wir schulen unsere VAs in jedem Tool, das Sie benötigen – ohne zusätzliche Kosten."
-                : "We train our VAs on any tool you need — at no extra cost."}
+                ? "Wir schulen unsere Agents in jedem Tool, das Sie benötigen - ohne zusätzliche Kosten."
+                : "We train our agents on any tool you need - at no extra cost."}
             </p>
           </motion.div>
         </div>

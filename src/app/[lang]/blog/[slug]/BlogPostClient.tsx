@@ -247,7 +247,7 @@ export default function BlogPostClient({
             {isGe ? "Bereit, Ihr Team zu skalieren?" : "Ready to Scale Your Team?"}
           </h3>
           <p className="text-sm sm:text-base text-muted-foreground mb-6 max-w-2xl mx-auto">
-            {isGe ? "Entdecken Sie, wie virtuelle Assistenten Ihr Unternehmen transformieren können." : "Discover how virtual assistants can transform your business."}
+            {isGe ? "Entdecken Sie, wie Call-Center-Agents Ihren Kundenservice skalieren können." : "Discover how call center agents can scale your customer support."}
           </p>
           <button
             onClick={() =>

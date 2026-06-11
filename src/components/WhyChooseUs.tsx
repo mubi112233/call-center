@@ -50,10 +50,10 @@ export const WhyChooseUs = () => {
     ]
   } : {
     badge: "Why Choose Us",
-    heading: "The Perfect Virtual Assistant Solution",
-    description: "Experience the difference with our professional virtual assistants who are trained to deliver exceptional results.",
+    heading: "The Right Call Center Solution",
+    description: "Experience reliable support from professional call center agents trained to deliver consistent customer communication.",
     items: [
-      { icon: "Target", title: "Expertly Vetted Professionals", description: "Every virtual assistant is carefully screened and tested to ensure they meet our high standards of excellence." },
+      { icon: "Target", title: "Expertly Vetted Professionals", description: "Every agent is carefully screened and tested to ensure they meet our high standards of excellence." },
       { icon: "Shield", title: "Secure & Confidential", description: "Your data and business information are protected with enterprise-grade security measures." },
       { icon: "Zap", title: "Lightning Fast Onboarding", description: "Get started within 24 hours. Our streamlined process ensures you have the right assistant quickly." },
       { icon: "HeartHandshake", title: "Dedicated Support", description: "Our team is always available to ensure smooth collaboration and address any concerns." },

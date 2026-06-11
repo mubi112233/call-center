@@ -10,9 +10,9 @@ export const copy = {
     //  HERO SECTION
     // ═══════════════════════════════════════════════════════════
     hero: {
-      badge: "Trusted by 200+ Growing Businesses",
-      title: "Scale Your Business with Dedicated Virtual Assistants",
-      subtitle: "Hire pre-vetted, German-speaking virtual assistants for 80% less than local hires. Scale your team in days, not months.",
+      badge: "German-speaking call center support for DACH",
+      title: "Scale Your Customer Support with DON-CALL",
+      subtitle: "Add trained German-speaking call center agents for inbound and outbound support without building an in-house team.",
       ctaPrimary: "Get Started",
       ctaSecondary: "Book a Call",
       stats: {
@@ -28,7 +28,7 @@ export const copy = {
     services: {
       badge: "Services",
       heading: "Our Services",
-      subheading: "Comprehensive virtual assistant solutions tailored to your business needs. From administrative tasks to specialized support, we've got you covered.",
+      subheading: "Inbound support, outbound calling, back-office follow-up, and multilingual customer care tailored to DACH businesses.",
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -42,17 +42,17 @@ export const copy = {
         step1: {
           step: "Step 1",
           title: "Initial Consultation",
-          description: "We discuss your needs and goals to create a customized plan for your virtual assistant."
+          description: "We discuss your call volume, channels, opening hours, and support goals to define the right setup."
         },
         step2: {
           step: "Step 2", 
-          title: "VA Matching & Onboarding",
-          description: "We match you with the perfect virtual assistant and handle all onboarding processes."
+          title: "Agent Team Setup & Onboarding",
+          description: "We assign trained call center agents and prepare scripts, workflows, escalation paths, and reporting."
         },
         step3: {
           step: "Step 3",
           title: "Integration & Training",
-          description: "Your VA integrates with your team and receives specific training on your workflows."
+          description: "Your agents integrate with your tools and receive specific training on your products, customers, and processes."
         },
         step4: {
           step: "Step 4",
@@ -76,20 +76,20 @@ export const copy = {
     // ═══════════════════════════════════════════════════════════
     valueProposition: {
       badge: "Our Promise",
-      heading: "The <span class=\"text-gold\">Perfect VA Solution</span>",
-      subheading: "Experience the difference with our professional virtual assistants who are trained to deliver exceptional results.",
+      heading: "The <span class=\"text-gold\">Call Center Solution</span> for DACH",
+      subheading: "Experience reliable customer communication with trained agents, clear supervision, and measurable service quality.",
       items: {
         quality: {
           title: "Expertly Vetted Professionals",
-          description: "Every virtual assistant is carefully screened and tested to ensure they meet our high standards of excellence.",
+          description: "Every agent is carefully screened and trained to meet our standards for language quality, empathy, and reliability.",
         },
         security: {
           title: "Secure & Confidential",
           description: "Your data and business information are protected with enterprise-grade security measures.",
         },
         speed: {
-          title: "Lightning Fast Onboarding",
-          description: "Get started within 24 hours. Our streamlined process ensures you have the right assistant quickly.",
+          title: "Fast Onboarding",
+          description: "Start quickly with a clear setup process for scripts, tools, quality checks, and reporting.",
         },
         support: {
           title: "Dedicated Support",
@@ -101,7 +101,7 @@ export const copy = {
     // Testimonials
     testimonials: {
       heading: "Trusted by <span class=\"text-gold\">Growing Businesses</span>",
-      subheading: "Real results from real companies scaling with DON VA.",
+      subheading: "Real results from companies improving customer communication with DON-CALL.",
       caseStudy: {
         badge: "Success Story",
         title: "Case Study: <span class=\"text-gold\">70% Cost Reduction</span>",
@@ -114,7 +114,7 @@ export const copy = {
     blog: {
       badge: "Insights",
       heading: "Latest <span class=\"text-gold\">Insights</span>",
-      description: "Practical guides and strategies for scaling with virtual assistants.",
+      description: "Practical guides and strategies for scaling customer support and call center operations.",
       by: "By",
       readMore: "Read more",
       read: "Read",
@@ -124,7 +124,7 @@ export const copy = {
     caseStudies: {
       badge: "Success Stories",
       heading: "Real <span class=\"text-gold\">Success Stories</span>",
-      description: "Proven results from teams scaling with DON VA.",
+      description: "Proven results from teams scaling customer support with DON-CALL.",
       labels: {
         saved: "Saved",
         teamSize: "Team Size",
@@ -153,13 +153,13 @@ export const copy = {
     pricing: {
       sectionBadge: "Pricing",
       sectionTitle: "Simple, transparent pricing",
-      sectionDescription: "Choose a plan and number of VAs that fits your needs. Scale up or down anytime.",
-      vaCountLabel: "How many VAs do you need?",
-      vaCountHelper: "Select the number of virtual assistants",
+      sectionDescription: "Choose a plan and number of agents that fits your support needs. Scale up or down anytime.",
+      vaCountLabel: "How many agents do you need?",
+      vaCountHelper: "Select the number of call center agents",
       startingFrom: "Starting from €{price}/mo · ~€{hourly}/hr",
       bulkDiscount: "{percent}% bulk discount applied!",
       bulkSavings: "You save €{amount} total",
-      bulkHint: "Add {count} more VA{suffix} to unlock {percent}% bulk discount",
+      bulkHint: "Add {count} more agent{suffix} to unlock {percent}% bulk discount",
       bannerBadge: "Limited Time",
       bannerTitle: "Book a Free Meeting",
       bannerSubtitle: "Schedule your free consultation and get started today",
@@ -173,7 +173,7 @@ export const copy = {
           name: "Starter",
           hours: "10h / week",
           features: [
-            "Dedicated VA",
+            "Dedicated call center agent",
             "Native Quality Control",
             "24h Replacement Guarantee",
             "Slack/Email Support",
@@ -209,7 +209,7 @@ export const copy = {
       hoursUnit: "hours",
       planSetupFee: "+€{fee} setup fee",
       planNoSetupFee: "No setup fee",
-      disclaimer: "All prices are per VA. Bulk discounts apply automatically. Setup fees are one-time charges."
+      disclaimer: "All prices are per agent. Bulk discounts apply automatically. Setup fees are one-time charges."
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -218,9 +218,9 @@ export const copy = {
     finalCTA: {
       badge: "Ready to Scale?",
       headlineLine1: "Start with",
-      headlineLine2: "DON VA Today",
+      headlineLine2: "DON-CALL Today",
       subheading: "Book a free consultation and see how we can transform your operations in 48 hours.",
-      benefits: ["No setup fees", "14-day trial", "Native managers", "24/7 support"],
+      benefits: ["14-day trial", "Native managers", "24/7 support", "Flexible scaling"],
       primaryCta: "Book Free Meeting",
       secondaryCta: "Chat on WhatsApp",
       trust: {
@@ -256,8 +256,8 @@ export const copy = {
     // ═══════════════════════════════════════════════════════════
     //  FOOTER
     // ═══════════════════════════════════════════════════════════
-    footer: {
-      tagline: "Professional virtual assistant services to help you scale your business efficiently.",
+      footer: {
+      tagline: "Professional call center services to help you scale customer communication efficiently.",
       company: "Company",
       legal: "Legal",
       followUs: "Follow Us",
@@ -270,9 +270,9 @@ export const copy = {
     //  HERO SECTION
     // ═══════════════════════════════════════════════════════════
     hero: {
-      badge: "Von 200+ wachsenden Unternehmen vertraut",
-      title: "Skalieren Sie Ihr Unternehmen mit dedizierten virtuellen Assistenten",
-      subtitle: "Stellen Sie geprüfte, deutschsprachige virtuelle Assistenten für 80% weniger als lokale Einstellungen ein. Skalieren Sie Ihr Team in Tagen, nicht Monaten.",
+      badge: "Deutschsprachiger Call-Center-Support für DACH",
+      title: "Skalieren Sie Ihren Kundenservice mit DON-CALL",
+      subtitle: "Erweitern Sie Ihren Inbound- und Outbound-Support mit geschulten deutschsprachigen Call-Center-Agents, ohne ein internes Team aufzubauen.",
       ctaPrimary: "Jetzt starten",
       ctaSecondary: "Termin vereinbaren",
       stats: {
@@ -288,7 +288,7 @@ export const copy = {
     services: {
       badge: "Dienstleistungen",
       heading: "Unsere Dienstleistungen",
-      subheading: "Umfassende virtuelle Assistenzlösungen, die auf Ihre Geschäftsbedürfnisse zugeschnitten sind. Von administrativen Aufgaben bis hin zu spezialisierten Dienstleistungen.",
+      subheading: "Inbound-Support, Outbound-Telefonie, Back-Office-Follow-ups und mehrsprachige Kundenbetreuung für DACH-Unternehmen.",
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -302,17 +302,17 @@ export const copy = {
         step1: {
           step: "Schritt 1",
           title: "Erstberatung",
-          description: "Wir besprechen Ihre Bedürfnisse und Ziele, um einen maßgeschneiderten Plan für Ihren virtuellen Assistenten zu erstellen."
+          description: "Wir besprechen Anrufvolumen, Kanäle, Servicezeiten und Support-Ziele, um das passende Setup zu definieren."
         },
         step2: {
           step: "Schritt 2",
-          title: "VA-Vermittlung & Onboarding",
-          description: "Wir vermitteln Ihnen den perfekten virtuellen Assistenten und übernehmen alle Onboarding-Prozesse."
+          title: "Agent-Team & Onboarding",
+          description: "Wir stellen geschulte Call-Center-Agents bereit und richten Skripte, Workflows, Eskalationen und Reporting ein."
         },
         step3: {
           step: "Schritt 3",
           title: "Integration & Schulung",
-          description: "Ihr VA integriert sich in Ihr Team und erhält spezifisches Training für Ihre Workflows."
+          description: "Ihre Agents arbeiten mit Ihren Tools und erhalten Training zu Produkten, Kunden und Prozessen."
         },
         step4: {
           step: "Schritt 4",
@@ -336,20 +336,20 @@ export const copy = {
     // ═══════════════════════════════════════════════════════════
     valueProposition: {
       badge: "Unser Versprechen",
-      heading: "Die <span class=\"text-gold\">perfekte VA-Lösung</span>",
-      subheading: "Erleben Sie den Unterschied mit unseren professionellen virtuellen Assistenten, die darauf trainiert sind, außergewöhnliche Ergebnisse zu liefern.",
+      heading: "Die <span class=\"text-gold\">Call-Center-Lösung</span> für DACH",
+      subheading: "Sorgen Sie für verlässliche Kundenkommunikation mit geschulten Agents, klarer Supervision und messbarer Servicequalität.",
       items: {
         quality: {
           title: "Sorgfältig geprüfte Fachkräfte",
-          description: "Jeder virtuelle Assistent wird sorgfältig geprüft und getestet, um unsere hohen Qualitätsstandards zu erfüllen.",
+          description: "Jeder Agent wird sorgfältig geprüft und trainiert, um unsere Standards für Sprachqualität, Empathie und Zuverlässigkeit zu erfüllen.",
         },
         security: {
           title: "Sicher & vertraulich",
           description: "Ihre Daten und Geschäftsinformationen sind durch Sicherheitsmaßnahmen auf Unternehmensebene geschützt.",
         },
         speed: {
-          title: "Blitzschnelles Onboarding",
-          description: "Starten Sie innerhalb von 24 Stunden. Unser optimierter Prozess stellt sicher, dass Sie schnell den richtigen Assistenten haben.",
+          title: "Schnelles Onboarding",
+          description: "Starten Sie schnell mit einem klaren Setup für Skripte, Tools, Qualitätschecks und Reporting.",
         },
         support: {
           title: "Dedizierter Support",
@@ -361,7 +361,7 @@ export const copy = {
     // Testimonials
     testimonials: {
       heading: "Vertrauen von <span class=\"text-gold\">wachsenden Unternehmen</span>",
-      subheading: "Echte Ergebnisse von Unternehmen, die mit DON VA skalieren.",
+      subheading: "Echte Ergebnisse von Unternehmen, die ihre Kundenkommunikation mit DON-CALL verbessern.",
       caseStudy: {
         badge: "Erfolgsgeschichte",
         title: "Fallstudie: <span class=\"text-gold\">70% Kostensenkung</span>",
@@ -374,7 +374,7 @@ export const copy = {
     blog: {
       badge: "Einblicke",
       heading: "Aktuelle <span class=\"text-gold\">Einblicke</span>",
-      description: "Praktische Leitfäden und Strategien zur Skalierung mit virtuellen Assistenten.",
+      description: "Praktische Leitfäden und Strategien zur Skalierung von Kundenservice und Call-Center-Prozessen.",
       by: "Von",
       readMore: "Weiterlesen",
       read: "Lesen",
@@ -384,7 +384,7 @@ export const copy = {
     caseStudies: {
       badge: "Erfolgsgeschichten",
       heading: "Echte <span class=\"text-gold\">Erfolgsgeschichten</span>",
-      description: "Bewährte Ergebnisse von Teams, die mit DON VA skalieren.",
+      description: "Bewährte Ergebnisse von Teams, die ihren Kundenservice mit DON-CALL skalieren.",
       labels: {
         saved: "Gespart",
         teamSize: "Teamgröße",
@@ -411,44 +411,44 @@ export const copy = {
 
     // Pricing
     pricing: {
-      sectionBadge: "Pricing",
-      sectionTitle: "Simple, Transparent Pricing",
-      sectionDescription: "Choose the perfect plan for your business. Scale up or down anytime.",
-      vaCountLabel: "How many VAs do you need?",
-      vaCountHelper: "Select the number of virtual assistants",
-      startingFrom: "Starting from €{price}/hour",
+      sectionBadge: "Preise",
+      sectionTitle: "Einfache, transparente Preise",
+      sectionDescription: "Wählen Sie das passende Agent-Paket für Ihren Support. Jederzeit flexibel skalierbar.",
+      vaCountLabel: "Wie viele Agents benötigen Sie?",
+      vaCountHelper: "Wählen Sie die Anzahl der Call-Center-Agents",
+      startingFrom: "Ab €{price}/Monat · ca. €{hourly}/Std.",
       bulkDiscount: "{percent}% discount - {suffix} more!",
       bulkSavings: "Save €{amount} total",
-      bulkHint: "Add {count} more {suffix} to get {percent}% discount",
-      bannerBadge: "Limited Time",
-      bannerTitle: "Book a Meeting",
-      bannerSubtitle: "Schedule your free consultation and get started today",
+      bulkHint: "Fügen Sie {count} weitere Agent{suffix} hinzu und erhalten Sie {percent}% Rabatt",
+      bannerBadge: "Beratung",
+      bannerTitle: "Kostenloses Gespräch buchen",
+      bannerSubtitle: "Planen Sie Ihre kostenlose Beratung und finden Sie das passende Support-Setup.",
       bannerPoints: {
-        noCommitment: "No commitment",
-        cancelAnytime: "Cancel anytime", 
-        fullAccess: "Full access"
+        noCommitment: "Keine Bindung",
+        cancelAnytime: "Jederzeit kündbar", 
+        fullAccess: "Volle Transparenz"
       },
       plans: {
         starter: {
           name: "Starter",
           hours: "10h / week",
           features: [
-            "Dedicated VA",
+            "Dedizierter Call-Center-Agent",
             "Native Quality Control",
             "24h Replacement Guarantee", 
             "Slack/Email Support",
-            "14 Days Money-Back Warranty"
+            "14 Tage Geld-zurück-Garantie"
           ]
         },
         professional: {
           name: "Professional", 
           hours: "20h / week",
           features: [
-            "Everything in Starter",
-            "No Setup Fee",
-            "Priority Support",
-            "Bi-weekly Progress Reports",
-            "Flexible Hour Rollover"
+            "Alles aus Starter",
+            "Keine Einrichtungsgebühr",
+            "Priorisierter Support",
+            "Zweiwöchentliche Fortschrittsberichte",
+            "Flexible Stundenübernahme"
           ]
         },
         enterprise: {
@@ -456,20 +456,20 @@ export const copy = {
           hours: "40h / week", 
           badge: "Best Value",
           features: [
-            "Everything in Professional",
-            "No Setup Fee",
-            "Dedicated Account Manager", 
-            "Weekly Strategy Calls",
-            "Custom Workflow Integration"
+            "Alles aus Professional",
+            "Keine Einrichtungsgebühr",
+            "Dedizierter Account Manager", 
+            "Wöchentliche Strategiegespräche",
+            "Individuelle Workflow-Integration"
           ]
         }
       },
-      button: "Get Started",
-      perMonth: "/mo",
-      hoursUnit: "hours",
-      planSetupFee: "+€{fee} setup fee",
-      planNoSetupFee: "No setup fee",
-      disclaimer: "All prices are per VA. Bulk discounts apply automatically. Setup fees are one-time charges."
+      button: "Jetzt starten",
+      perMonth: "/Monat",
+      hoursUnit: "Std.",
+      planSetupFee: "+€{fee} Einrichtungsgebühr",
+      planNoSetupFee: "Keine Einrichtungsgebühr",
+      disclaimer: "Alle Preise gelten pro Agent. Mengenrabatte werden automatisch angewendet. Einrichtungsgebühren sind einmalige Kosten."
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -478,9 +478,9 @@ export const copy = {
     finalCTA: {
       badge: "Bereit zu skalieren?",
       headlineLine1: "Starten Sie noch heute",
-      headlineLine2: "mit DON VA",
+      headlineLine2: "mit DON-CALL",
       subheading: "Buchen Sie eine kostenlose Beratung und erleben Sie, wie wir Ihre Abläufe in 48 Stunden transformieren können.",
-      benefits: ["Keine Einrichtungsgebühren", "14-Tage-Test", "Native Manager", "24/7 Support"],
+      benefits: ["14-Tage-Test", "Native Manager", "24/7 Support", "Flexible Skalierung"],
       primaryCta: "Kostenloses Gespräch",
       secondaryCta: "WhatsApp Chat",
       trust: {
@@ -517,7 +517,7 @@ export const copy = {
     //  FOOTER
     // ═══════════════════════════════════════════════════════════
     footer: {
-      tagline: "Professionelle virtuelle Assistenten-Dienste, die Ihnen helfen, Ihr Unternehmen effizient zu skalieren.",
+      tagline: "Professionelle Call-Center-Dienstleistungen, die Ihnen helfen, Kundenkommunikation effizient zu skalieren.",
       company: "Unternehmen",
       legal: "Rechtliches",
       followUs: "Folgen Sie uns",

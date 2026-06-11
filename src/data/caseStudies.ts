@@ -25,7 +25,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 1,
     title: "E-commerce Automation Success",
-    description: "How we helped an online retailer reduce operational costs by 40% through virtual assistant integration.",
+    description: "How we helped an online retailer reduce support costs by 40% through call center agent integration.",
     image: "/api/placeholder/600/400",
     category: "E-commerce",
     tags: ["Automation", "Cost Reduction", "Efficiency"],
@@ -38,12 +38,12 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: 2,
-    title: "Real Estate Virtual Assistant Implementation",
+    title: "Real Estate Call Center Implementation",
     description: "Transforming a real estate agency's workflow with dedicated virtual support.",
     image: "/api/placeholder/600/400",
     category: "Real Estate",
     tags: ["Real Estate", "Workflow", "Support"],
-    content: "Detailed case study content about real estate VA implementation...",
+    content: "Detailed case study content about real estate call center implementation...",
     results: [
       { metric: "Lead Conversion", value: "+35%" },
       { metric: "Response Time", value: "-80%" },

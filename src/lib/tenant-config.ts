@@ -86,24 +86,23 @@ export interface TenantConfig {
 
 /** All tenant configurations for your 10 sites */
 export const tenantPresets: Record<string, TenantConfig> = {
-  // ── Call Center / Virtual Assistant (Current) ──
+  // ── DON-CALL Call Center (Current) ──
   callcenter: {
     id: "callcenter",
-    name: "Call Center",
-    brandName: "Call Center",
-    brandMarkText: "CC",
-    defaultLocale: "en",
-    description: "Professional call center services for inbound and outbound support. Scale your team quickly with qualified agents.",
-    siteUrl: "https://callcenter.example.com",
+    name: "DON-CALL",
+    brandName: "DON-CALL",
+    brandMarkText: "DC",
+    defaultLocale: "ge",
+    description: "Professioneller Call-Center-Service für DACH-Unternehmen. Skalieren Sie Inbound- und Outbound-Support mit qualifizierten deutschsprachigen Agents.",
+    siteUrl: "https://don-call.com",
     theme: "teal",
     apiBase: "https://api.don-va.com",
-    whatsappNumber: "491234567890",
-    contactEmail: "contact@callcenter.example.com",
+    contactEmail: "contact@don-call.com",
     web3formsKey: "8aff1902-6795-4608-ad79-be6702aa7f3a",
     googleAnalyticsId: "G-Q75404R5F8",
     googleSearchConsoleId: "l93HxOLqUBDjtuNfHM7OsWQd7i9MfSJo1fV_yaLAZrE",
-    linkedInUrl: "https://linkedin.com/company/call-center",
-    twitterHandle: "@call_center",
+    linkedInUrl: "https://linkedin.com/company/don-call",
+    twitterHandle: "@don_call",
     features: {
       blog: true,
       caseStudies: true,

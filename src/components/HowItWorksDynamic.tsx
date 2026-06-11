@@ -73,20 +73,20 @@ export const HowItWorksDynamic = () => {
             },
             {
               stepNumber: 2,
-              title: "Get Matched with Your VA",
-              description: "We'll match you with a pre-vetted virtual assistant based on your specific needs.",
+              title: "Set Up Your Agent Team",
+              description: "We'll assign trained call center agents based on your channels, scripts, and support goals.",
               icon: "UserCheck"
             },
             {
               stepNumber: 3,
               title: "Onboard and Start Working",
-              description: "Meet your VA and begin delegating tasks. We'll handle all the paperwork.",
+              description: "Meet your agents and begin routing customer conversations. We'll handle the setup details.",
               icon: "Rocket"
             },
             {
               stepNumber: 4,
               title: "Scale Your Business",
-              description: "Watch your productivity soar as your VA handles routine tasks and supports your growth.",
+              description: "Track service quality as your agents handle customer conversations and support your growth.",
               icon: "LineChart"
             }
           ];
@@ -107,20 +107,20 @@ export const HowItWorksDynamic = () => {
           },
           {
             stepNumber: 2,
-            title: "Get Matched with Your VA",
-            description: "We'll match you with a pre-vetted virtual assistant based on your specific needs.",
+            title: "Set Up Your Agent Team",
+            description: "We'll assign trained call center agents based on your channels, scripts, and support goals.",
             icon: "UserCheck"
           },
           {
             stepNumber: 3,
             title: "Onboard and Start Working",
-            description: "Meet your VA and begin delegating tasks. We'll handle all the paperwork.",
+            description: "Meet your agents and begin routing customer conversations. We'll handle the setup details.",
             icon: "Rocket"
           },
           {
             stepNumber: 4,
             title: "Scale Your Business",
-            description: "Watch your productivity soar as your VA handles routine tasks and supports your growth.",
+            description: "Track service quality as your agents handle customer conversations and support your growth.",
             icon: "LineChart"
           }
         ];
