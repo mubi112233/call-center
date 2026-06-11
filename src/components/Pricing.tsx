@@ -101,8 +101,8 @@ export const Pricing = () => {
   const totalPrice = plans.reduce((sum, plan) => sum + plan.price, 0) * agentCount;
   const savings = discount > 0 ? Math.round(totalPrice * discount) : 0;
   
-  // Calculate starter price per agent per hour
-  const avgHoursPerWeek = 20; // Professional plan baseline
+  // Calculate starter price per agent per hour (Starter: 10h/week = ~40h/month)
+  const avgHoursPerWeek = 10; // Starter plan hours per week
   const avgPricePerAgent = plans[0].price;
 
   return (

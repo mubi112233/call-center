@@ -22,7 +22,11 @@ export function FAQInteractive({ lang: langProp }: { lang?: string }) {
   useEffect(() => {
     fetchFAQ(lang).then((data) => {
       if (data?.faqs) {
-        setFaqs([...data.faqs].sort((a, b) => a.order - b.order));
+        // Only include FAQs that have both a question and a non-empty answer
+        const validFaqs = data.faqs.filter(
+          (f) => f.question?.trim() && f.answer?.trim()
+        );
+        setFaqs([...validFaqs].sort((a, b) => a.order - b.order));
       }
       setLoading(false);
     }).catch(() => setLoading(false));
@@ -88,6 +92,11 @@ export function FAQInteractive({ lang: langProp }: { lang?: string }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
+            {faqs.length === 0 ? (
+              <p className="text-center text-muted-foreground py-8">
+                {lang === "ge" ? "Noch keine FAQs verfügbar." : "No FAQs available yet."}
+              </p>
+            ) : (
             <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
               {faqs.map((faq, index) => (
                 <motion.div
@@ -116,6 +125,7 @@ export function FAQInteractive({ lang: langProp }: { lang?: string }) {
                 </motion.div>
               ))}
             </Accordion>
+            )}
           </motion.div>
 
           <motion.div
